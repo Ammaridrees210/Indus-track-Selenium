@@ -62,8 +62,8 @@ public class OfficerUserTest extends BaseWebTest {
 
     @Test(dataProvider = "officerUserDataUpdate", priority = 3)
     public void enterUpdateOfficerUser(webData updateOfficerUser) throws IOException {
-        webData loginData = TestDataUtil.getOfficerUserData().get(0);
-        loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
         officerPage.updateOfficerUser(updateOfficerUser);

@@ -1,6 +1,8 @@
 package org.automation.pages;
 
 import org.data.webData;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -150,36 +152,39 @@ public class OfficerPage {
         }
 
         public void createOfficeUser(webData userData) {
+                handleHtmlPasswordAlertIfPresent();
                 navigateToOfficerUser();
                 registrationOfOfficerUser(userData);
                 permissionSettingOfOfficerUser();
                 notificationOfOfficerUser();
                 userPreferenceOfOfficerUser();
-                handleLoginFlow();
+                handleLogoutFlow();
         }
 
         public void verifyCreatedOfficerUserData(webData userData){
+                handleHtmlPasswordAlertIfPresent();
                 performAssertionToVerifyInputDataOfOfficerUser(userData);
-                handleLoginFlow();
         }
 
         public void updateOfficerUser(webData userData){
+                handleHtmlPasswordAlertIfPresent();
                 navigateToOfficerUser();
                 clickOnFilterfield(userData.getEmail());
                 waitInSeconds(5);
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnSearchCreatedOfficerUser)).click();
                 waitInSeconds(6);
                 fillOfficerUserForm(userData);
-                SelectUpdatedRole();
+                selectUpdatedRole();
                 selectUpdatedMobileNetProvider();
                 permissionSettingOfUpdatedOfficerUser();
                 notificationOfOfficerUser();
                 userPreferenceOfUpdatedOfficerUser();
-                handleLoginFlow();
+                handleLogoutFlow();
         }
         public void verifyUpdatedOfficerUserData(webData userData){
+                handleHtmlPasswordAlertIfPresent();
                 performAssertionToVerifyUpdatedInputDataOfOfficerUser(userData);
-                handleLoginFlow();
+
         }
 
         public void navigateToOfficerUser() {
@@ -190,6 +195,18 @@ public class OfficerPage {
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(visibilityOfLoader));
                 wait.until(ExpectedConditions.visibilityOfElementLocated(officerUserList));
                 waitInSeconds(5);
+        }
+        public void handleHtmlPasswordAlertIfPresent() {
+                try {
+                        WebElement okButton = wait.until(ExpectedConditions.presenceOfElementLocated(
+                                By.xpath("//button[contains(text(),'OK')]")
+                        ));
+                        if (okButton.isDisplayed()) {
+                                okButton.click();
+                                System.out.println("Handled HTML password alert by clicking OK.");
+                        }
+                } catch (TimeoutException e) {
+                }
         }
 
         public void fillOfficerUserForm(webData userData){
@@ -224,7 +241,7 @@ public class OfficerPage {
                 waitInSeconds(2);
                 wait.until(ExpectedConditions.elementToBeClickable(selectOptionEditView)).click();
         }
-        public void SelectUpdatedRole(){
+        public void selectUpdatedRole(){
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnRole)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(selectOptionAdmin));
                 waitInSeconds(2);
@@ -393,22 +410,22 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedMembershipEmailemplateText(), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email Email is mismatch");
                 Assert.assertEquals(getSelectedFormEmailTemplateText(), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email is mismatch");
         }
-        public void performAssertionToVerifyUpdatedInputDataOfOfficerUser(webData userData) {
+        public void performAssertionToVerifyUpdatedInputDataOfOfficerUser(webData updateOfficerUser) {
                 navigateToOfficerUser();
-                clickOnFilterfield(userData.getEmail());
+                clickOnFilterfield(updateOfficerUser.getEmail());
                 waitInSeconds(5);
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnSearchCreatedOfficerUser)).click();
                 waitInSeconds(6);
                 Assert.assertEquals(getSelectedRoleText(), "Admin", "Admin selection mismatch");
-                Assert.assertEquals(getOfficerFirstName(), userData.getFirstName(), "Officer firstname mismatch");
-                Assert.assertEquals(getOfficerLastName(), userData.getLastName(), "Officer lastname mismatch");
-                Assert.assertEquals(getOfficerPhoneNumber(), userData.getPhone(), "Officer phone Number mismatch");
+                Assert.assertEquals(getOfficerFirstName(), updateOfficerUser.getFirstName(), "Officer firstname mismatch");
+                Assert.assertEquals(getOfficerLastName(), updateOfficerUser.getLastName(), "Officer lastname mismatch");
+                Assert.assertEquals(getOfficerPhoneNumber(), updateOfficerUser.getPhone(), "Officer phone Number mismatch");
                 Assert.assertEquals(getSelectedMobileProviderText(), "Cellular One", "Mobile provider selection mismatch");
-                Assert.assertEquals(getOfficerStreet(), userData.getStreet(), "Officer name mismatch");
-                Assert.assertEquals(getOfficerCityName(), userData.getCity(), "Officer name mismatch");
-                Assert.assertEquals(getOfficerStateName(), userData.getState(), "Officer name mismatch");
-                Assert.assertEquals(getOfficerZipNumber(), userData.getZip(), "Officer name mismatch");
-                Assert.assertEquals(getOfficerCountryName(), userData.getCountry(), "Officer name mismatch");
+                Assert.assertEquals(getOfficerStreet(), updateOfficerUser.getStreet(), "Officer name mismatch");
+                Assert.assertEquals(getOfficerCityName(), updateOfficerUser.getCity(), "Officer name mismatch");
+                Assert.assertEquals(getOfficerStateName(), updateOfficerUser.getState(), "Officer name mismatch");
+                Assert.assertEquals(getOfficerZipNumber(), updateOfficerUser.getZip(), "Officer name mismatch");
+                Assert.assertEquals(getOfficerCountryName(), updateOfficerUser.getCountry(), "Officer name mismatch");
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnPremissionTab)).click();
                 waitInSeconds(2);
                 Assert.assertEquals(getSelectedCalendarText(), "Lawn Jobs", "Calendar selection mismatch");
@@ -424,7 +441,7 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedMembershipEmailemplateText(), "Company Default", "Form Email Email is mismatch");
                 Assert.assertEquals(getSelectedFormEmailTemplateText(), "Company Default", "Form Email is mismatch");
         }
-        public void handleLoginFlow() {
+        public void handleLogoutFlow() {
                 WebElement profile = wait.until(ExpectedConditions.visibilityOfElementLocated(profileIcon));
                 Assert.assertTrue(profile.isDisplayed(), "Login was not successful. Profile icon not found.");
                 clickProfileIcon();
