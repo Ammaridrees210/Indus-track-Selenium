@@ -3,16 +3,14 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="org.OfficerUserTest">
+      <class name="org.UserLoginTest">
         <methods>
+          <include name="testInvalidLogin" invocation-numbers="4"/>
           <include name="tearDown"/>
-          <include name="setUpLogin"/>
-          <include name="verifyupdatedOfficerUser" invocation-numbers="0"/>
-          <include name="enterUpdateOfficerUser" invocation-numbers="0"/>
+          <include name="setup"/>
           <include name="setUp"/>
-          <include name="verifyOfficerUser" invocation-numbers="0"/>
         </methods>
-      </class> <!-- org.OfficerUserTest -->
+      </class> <!-- org.UserLoginTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

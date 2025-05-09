@@ -10,8 +10,9 @@ public class DriverManager {
         public static WebDriver createWebDriver() {
                 if (driver == null) {
                         ChromeOptions options = new ChromeOptions();
-                        options.addArguments("--start-maximized"); // Open in maximized mode
-                        options.addArguments("--disable-notifications"); // Disable pop-ups
+                        options.addArguments("--start-maximized");
+                        options.addArguments("--disable-notifications");
+                        options.addArguments("--incognito");
                         driver = new ChromeDriver(options);
                 }
                 return driver;

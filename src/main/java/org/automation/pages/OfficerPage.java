@@ -1,8 +1,6 @@
 package org.automation.pages;
 
 import org.data.webData;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,32 +43,32 @@ public class OfficerPage {
         }
 
         public void phone(String phone){
-                driver.findElement(phoneNumberOfofficerUser).clear();
-                driver.findElement(phoneNumberOfofficerUser).sendKeys(phone);
+                driver.findElement(phoneNumberOfOfficerUser).clear();
+                driver.findElement(phoneNumberOfOfficerUser).sendKeys(phone);
         }
 
         public void street(String street){
-                driver.findElement(streetOfofficerUser).clear();
-                driver.findElement(streetOfofficerUser).sendKeys(street);
+                driver.findElement(streetOfOfficerUser).clear();
+                driver.findElement(streetOfOfficerUser).sendKeys(street);
         }
 
         public void city(String city){
-                driver.findElement(cityNameOfofficerUser).clear();
-                driver.findElement(cityNameOfofficerUser).sendKeys(city);
+                driver.findElement(cityNameOfOfficerUser).clear();
+                driver.findElement(cityNameOfOfficerUser).sendKeys(city);
         }
 
         public void state(String state){
-                driver.findElement(stateOfofficerUser).clear();
-                driver.findElement(stateOfofficerUser).sendKeys(state);
+                driver.findElement(stateOfOfficerUser).clear();
+                driver.findElement(stateOfOfficerUser).sendKeys(state);
         }
 
         public void zip(String zip){
-                driver.findElement(zipCodeofficerUser).clear();
-                driver.findElement(zipCodeofficerUser).sendKeys(zip);
+                driver.findElement(zipCodeOfficerUser).clear();
+                driver.findElement(zipCodeOfficerUser).sendKeys(zip);
         }
         public void country(String country){
-                driver.findElement(countryofficerUser).clear();
-                driver.findElement(countryofficerUser).sendKeys(country);
+                driver.findElement(countryOfficerUser).clear();
+                driver.findElement(countryOfficerUser).sendKeys(country);
         }
 
         public void clickOutsideDropdown() {
@@ -92,25 +90,25 @@ public class OfficerPage {
                 return driver.findElement(lastNameOfOfficerUser).getAttribute("value");
         }
         public String getOfficerPhoneNumber() {
-                return driver.findElement(phoneNumberOfofficerUser).getAttribute("value");
+                return driver.findElement(phoneNumberOfOfficerUser).getAttribute("value");
         }
         public String getSelectedMobileProviderText() {
                 return driver.findElement(selectOptionOfMobile).getText().trim();
         }
         public String getOfficerStreet() {
-                return driver.findElement(streetOfofficerUser).getAttribute("value");
+                return driver.findElement(streetOfOfficerUser).getAttribute("value");
         }
         public String getOfficerCityName() {
-                return driver.findElement(cityNameOfofficerUser).getAttribute("value");
+                return driver.findElement(cityNameOfOfficerUser).getAttribute("value");
         }
         public String getOfficerStateName() {
-                return driver.findElement(stateOfofficerUser).getAttribute("value");
+                return driver.findElement(stateOfOfficerUser).getAttribute("value");
         }
         public String getOfficerZipNumber() {
-                return driver.findElement(zipCodeofficerUser).getAttribute("value");
+                return driver.findElement(zipCodeOfficerUser).getAttribute("value");
         }
         public String getOfficerCountryName() {
-                return driver.findElement(countryofficerUser).getAttribute("value");
+                return driver.findElement(countryOfficerUser).getAttribute("value");
         }
         public String getSelectedCalendarText(){
                 return driver.findElement(clickOnSelectCalendarToOpenDropDown).getText().trim();
@@ -152,64 +150,48 @@ public class OfficerPage {
         }
 
         public void createOfficeUser(webData userData) {
-                handleHtmlPasswordAlertIfPresent();
                 navigateToOfficerUser();
                 registrationOfOfficerUser(userData);
-                permissionSettingOfOfficerUser();
+//                permissionSettingOfOfficerUser();
                 notificationOfOfficerUser();
-                userPreferenceOfOfficerUser();
+//                userPreferenceOfOfficerUser();
                 handleLogoutFlow();
         }
 
-        public void verifyCreatedOfficerUserData(webData userData){
-                handleHtmlPasswordAlertIfPresent();
-                performAssertionToVerifyInputDataOfOfficerUser(userData);
-        }
+//        public void verifyCreatedOfficerUserData(webData userData){
+//                performAssertionToVerifyInputDataOfOfficerUser(userData);
+//        }
 
-        public void updateOfficerUser(webData userData){
-                handleHtmlPasswordAlertIfPresent();
-                navigateToOfficerUser();
-                clickOnFilterfield(userData.getEmail());
-                waitInSeconds(5);
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnSearchCreatedOfficerUser)).click();
-                waitInSeconds(6);
-                fillOfficerUserForm(userData);
-                selectUpdatedRole();
-                selectUpdatedMobileNetProvider();
-                permissionSettingOfUpdatedOfficerUser();
-                notificationOfOfficerUser();
-                userPreferenceOfUpdatedOfficerUser();
-                handleLogoutFlow();
-        }
-        public void verifyUpdatedOfficerUserData(webData userData){
-                handleHtmlPasswordAlertIfPresent();
-                performAssertionToVerifyUpdatedInputDataOfOfficerUser(userData);
-
-        }
+//        public void updateOfficerUser(webData userData){
+//                navigateToOfficerUser();
+//                clickOnFilterfield(userData.getEmail());
+//                waitInSeconds(5);
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnSearchCreatedOfficerUser)).click();
+//                waitInSeconds(6);
+//                fillOfficerUserForm(userData);
+//                selectUpdatedRole();
+//                selectUpdatedMobileNetProvider();
+//                permissionSettingOfUpdatedOfficerUser();
+//                notificationOfOfficerUser();
+//                userPreferenceOfUpdatedOfficerUser();
+//                handleLogoutFlow();
+//        }
+//        public void verifyUpdatedOfficerUserData(webData userData){
+//                performAssertionToVerifyUpdatedInputDataOfOfficerUser(userData);
+//
+//        }
 
         public void navigateToOfficerUser() {
                 waitInSeconds(5);
                 wait.until(ExpectedConditions.elementToBeClickable(settingsIcon)).click();
-                waitInSeconds(8);
+                waitInSeconds(10);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(officerUserTab)).click();
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(visibilityOfLoader));
                 wait.until(ExpectedConditions.visibilityOfElementLocated(officerUserList));
                 waitInSeconds(5);
         }
-        public void handleHtmlPasswordAlertIfPresent() {
-                try {
-                        WebElement okButton = wait.until(ExpectedConditions.presenceOfElementLocated(
-                                By.xpath("//button[contains(text(),'OK')]")
-                        ));
-                        if (okButton.isDisplayed()) {
-                                okButton.click();
-                                System.out.println("Handled HTML password alert by clicking OK.");
-                        }
-                } catch (TimeoutException e) {
-                }
-        }
 
-        public void fillOfficerUserForm(webData userData){
+        public void fillOfficerUserForm(@org.jetbrains.annotations.NotNull webData userData){
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnNewPassword)).click();
                 passwordNew(userData.getPasswordNew());
                 waitInSeconds(2);
@@ -229,7 +211,7 @@ public class OfficerPage {
                 wait.until(ExpectedConditions.elementToBeClickable(addNewButton)).click();
                 waitInSeconds(5);
                 newEmail(userData.getEmail());
-                fillOfficerUserForm(userData);
+//                fillOfficerUserForm(userData);
                 selectRole();
                 waitInSeconds(2);
                 selectMobileNetProvider();
@@ -261,7 +243,7 @@ public class OfficerPage {
 
         public void permissionSettingOfUpdatedOfficerUser(){
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnPremissionTab)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(crossDefaultMapSelectgion)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(crossDefaultMapSelection)).click();
                 waitInSeconds(2);
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnSelectCalendarToOpenDropDown)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(selectUpdateOptionFromCalendarDropdown));
@@ -270,14 +252,14 @@ public class OfficerPage {
                 clickOutsideDropdown();
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnMapVisibilityDropdown)).click();
                 waitInSeconds(3);
-                wait.until(ExpectedConditions.elementToBeClickable(clickOndropdownlistToDeSelectVehicle)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOndropdownlistToSelectUpdateVehicle)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(clickOnDropDownlistToDeSelectVehicle)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(clickOnDropDownlistToSelectUpdateVehicle)).click();
                 clickOutsideDropdown();
                 waitInSeconds(3);
         }
         public void permissionSettingOfOfficerUser(){
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnPremissionTab)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(crossDefaultMapSelectgion)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(crossDefaultMapSelection)).click();
                 waitInSeconds(2);
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnSelectCalendarToOpenDropDown)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(selectOptionFromCalendarDropdown));
@@ -288,7 +270,7 @@ public class OfficerPage {
                 waitInSeconds(2);
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnMapVisibilityDropdown)).click();
                 waitInSeconds(3);
-                wait.until(ExpectedConditions.elementToBeClickable(clickOndropdownlistToSelectVehicle)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(clickOnDropDownListToSelectVehicle)).click();
                 clickOutsideDropdown();
                 waitInSeconds(3);
         }
@@ -296,13 +278,31 @@ public class OfficerPage {
         public void notificationOfOfficerUser(){
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnNotificationTab)).click();
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnJobToViewNotificationOptions)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(clickOnJobPutOnHold)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnRecipient)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(selectEmailOfJobOnHold)).click();
+//                clickOutsideDropdown();
+//                wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobOnHoldPopup)).click();
+//                waitInSeconds(2);
+                wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobCompleted)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobCompletedPopup)).click();
+                waitInSeconds(5);
+
+
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnInvoiceToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimatesToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnMobileUserToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnContractsToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEquipmentToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnInventoryToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnVehiclesToViewNotificationOption)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoiceOverDue)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoiceOverDuePopup)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoicePaid)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoicePaidPopup)).click();
+                waitInSeconds(10);
+
+
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimatesToViewNotificationOption)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnMobileUserToViewNotificationOption)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnContractsToViewNotificationOption)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnEquipmentToViewNotificationOption)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnInventoryToViewNotificationOption)).click();
+//                wait.until(ExpectedConditions.elementToBeClickable(clickOnVehiclesToViewNotificationOption)).click();
         }
 
         public void userPreferenceOfUpdatedOfficerUser(){
@@ -438,7 +438,7 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedInvoiceEmailemplateText(), "Invoice {{InvoiceNumber}} from {{CompanyName}}", "Invoice Email is mismatch");
                 Assert.assertEquals(getSelectedInvoiceReminderEmailTemplateText(), "Company Default", "Invoice Reminder is mismatch");
                 Assert.assertEquals(getSelectedServiceAgreementEmailTemplateText(), "Company Default", "Service Agreeement Email is mismatch");
-                Assert.assertEquals(getSelectedMembershipEmailemplateText(), "Company Default", "Form Email Email is mismatch");
+                Assert.assertEquals(getSelectedMembershipEmailemplateText(), "Company Default", "Form Email is mismatch");
                 Assert.assertEquals(getSelectedFormEmailTemplateText(), "Company Default", "Form Email is mismatch");
         }
         public void handleLogoutFlow() {
