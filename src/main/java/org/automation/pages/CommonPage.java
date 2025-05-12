@@ -10,14 +10,12 @@ import java.time.Duration;
 
 public class CommonPage {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public CommonPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // global default wait
-
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public By getErrorMessageByLocator() {
@@ -32,17 +30,22 @@ public class CommonPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-//    public WebElement waitForElementVisible(String cssSelector) {
-//        return waitForElementVisible(By.cssSelector(cssSelector));
-//    }
+    public WebElement waitForElementVisibleByCss(String cssSelector) {
+        return waitForElementVisible(By.cssSelector(cssSelector));
+    }
 
     public WebElement waitForElementClickable(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public WebElement waitForElementClickable(String cssSelector) {
+    public WebElement waitForElementClickableByCss(String cssSelector) {
         return waitForElementClickable(By.cssSelector(cssSelector));
     }
+
+    public WebElement waitForElementClickableByXpath(String cssSelector) {
+        return waitForElementClickable(By.xpath(cssSelector));
+    }
+
     public void waitForUrlContains(String partialUrl) {
         wait.until(ExpectedConditions.urlContains(partialUrl));
     }

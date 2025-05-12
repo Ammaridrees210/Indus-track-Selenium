@@ -41,40 +41,40 @@ public class OfficerUserTest extends BaseWebTest {
         officerPage.createOfficeUser(officerUser);
     }
 
-//    @Test(dataProvider = "officerUserData", priority = 2)
-//    public void verifyOfficerUser(webData officerUser) throws IOException {
-//        webData loginData = TestDataUtil.getValidData().get(0);
-//        loginPage.login(loginData.getUsername(), loginData.getPassword());
-//
-//        OfficerPage officerPage = new OfficerPage(driver);
-//        officerPage.verifyCreatedOfficerUserData(officerUser);
-//    }
-//
-//    @DataProvider(name = "officerUserDataUpdate")
-//    public Object[][] getUpdateOfficerUserData() throws IOException {
-//        List<webData> updateData = TestDataUtil.getUpdateOfficerUserData();
-//        Object[][] data = new Object[updateData.size()][1];
-//        for (int i = 0; i < updateData.size(); i++) {
-//            data[i][0] = updateData.get(i);
-//        }
-//        return data;
-//    }
-//
-//    @Test(dataProvider = "officerUserDataUpdate", priority = 3)
-//    public void enterUpdateOfficerUser(webData updateOfficerUser) throws IOException {
-//        webData loginData = TestDataUtil.getValidData().get(0);
-//        loginPage.login(loginData.getUsername(), loginData.getPassword());
-//
-//        OfficerPage officerPage = new OfficerPage(driver);
-//        officerPage.updateOfficerUser(updateOfficerUser);
-//    }
-//
-//    @Test(dataProvider = "officerUserDataUpdate", priority = 4)
-//    public void verifyupdatedOfficerUser(webData updateOfficerUser) throws IOException {
-//        webData loginData = TestDataUtil.getUpdateOfficerUserData().get(0);
-//        loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
-//
-//        OfficerPage officerPage = new OfficerPage(driver);
-//        officerPage.verifyUpdatedOfficerUserData(updateOfficerUser);
-//    }
+    @Test(dataProvider = "officerUserData", priority = 2)
+    public void verifyOfficerUser(webData officerUser) throws IOException {
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.verifyCreatedOfficerUserData(officerUser);
+    }
+
+    @DataProvider(name = "officerUserDataUpdate")
+    public Object[][] getUpdateOfficerUserData() throws IOException {
+        List<webData> updateData = TestDataUtil.getUpdateOfficerUserData();
+        Object[][] data = new Object[updateData.size()][1];
+        for (int i = 0; i < updateData.size(); i++) {
+            data[i][0] = updateData.get(i);
+        }
+        return data;
+    }
+
+    @Test(dataProvider = "officerUserDataUpdate", priority = 3)
+    public void enterUpdateOfficerUser(webData updateOfficerUser) throws IOException {
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.updateOfficerUser(updateOfficerUser);
+    }
+
+    @Test(dataProvider = "officerUserDataUpdate", priority = 4)
+    public void verifyupdatedOfficerUser(webData updateOfficerUser) throws IOException {
+        webData loginData = TestDataUtil.getUpdateOfficerUserData().get(0);
+        loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.verifyUpdatedOfficerUserData(updateOfficerUser);
+    }
 }

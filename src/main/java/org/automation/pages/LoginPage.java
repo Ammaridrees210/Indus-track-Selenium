@@ -11,9 +11,9 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class LoginPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private CommonPage common;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+    private final CommonPage common;
 
     public String reminderWordAssertion = "div[id='mat-dialog-title-0'] h4";
     public String crossIcon = "i[title='Close dialog']";
@@ -29,7 +29,6 @@ public class LoginPage {
     public String requestResetLinkButton = "span.mat-button-wrapper";
     public String getErrorMassageElement = "form[role='form'] span[class='ng-star-inserted']";
 
-
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -39,7 +38,8 @@ public class LoginPage {
     public void closeReminderPopupIfPresent() {
         try {
             waitInSeconds(4);
-            WebElement reminderPopup = wait.until(ExpectedConditions.visibilityOf(common.findElementByCss(reminderWordAssertion)));
+            WebElement reminderPopup = wait
+                    .until(ExpectedConditions.visibilityOf(common.findElementByCss(reminderWordAssertion)));
             if (reminderPopup.isDisplayed()) {
                 common.findElementByCss(crossIcon).click();
             }
@@ -62,27 +62,28 @@ public class LoginPage {
         Assert.assertTrue(isErrorMessageDisplayed(), "The Username/Password is not correct.");
     }
 
-    public void handleForgotPasswordFlow(String username) {
-        common.waitForElementClickable(forgotPasswordHyperLink).click();
-        common.waitForElementClickable(forgotPasswordHyperLink).click();
+    public void handleForgotPasswordFlow(String email) {
+        common.waitForElementClickableByCss(forgotPasswordHyperLink).click();
         common.waitForUrlContains(visibilityOfForgotPasswordLink);
-        common.waitForElementVisible(By.cssSelector(visibilityOfForgotPasswordWording));
+        common.waitForElementVisible( visibilityOfForgotPasswordWording));
         // Verify final URL
         String expectedUrl = "https://onetrackuiprerelease.azurewebsites.net/forgotpassword";
         String currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl, expectedUrl, "Forgot Password redirection URL mismatch.");
-        common.findElementByCss(userNameSelector).sendKeys(username);
-        common.waitForElementClickable(requestResetLinkButton).click();
-        common.waitForElementClickable(loginPageHyperLink).click();
+        common.waitForElementVisibleByCss(userNameSelector).sendKeys(email);
+        common.waitForElementClickableByCss(requestResetLinkButton).click();
+        common.waitForElementClickableByCss(loginPageHyperLink).click();
+
     }
 
     public void handleValidLoginFlow() {
-        By profileIcon = By.cssSelector(profileFavicon);
+        By profileIcon =  profileFavicon);
         WebElement profile =common.waitForElementVisible(profileIcon);
         Assert.assertTrue(profile.isDisplayed(), "Login was not successful. Profile icon not found.");
         profile.click();
         common.findElementByCss(logoutButton).click();
     }
+
     public void login(String username, String password) {
         common.findElementByCss(userNameSelector).sendKeys(username);
         common.findElementByCss(userPassword).sendKeys(password);

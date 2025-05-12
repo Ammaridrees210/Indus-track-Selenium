@@ -1,6 +1,7 @@
 package org.automation.pages;
 
 import org.data.webData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,11 +14,73 @@ import java.time.Duration;
 public class OfficerPage {
         private final WebDriver driver;
         private final WebDriverWait wait;
+        private final CommonPage common;
+
+
+
+        public String clickOnPremissionTab = "div[id='mat-tab-label-1-1'] div[class='mat-tab-label-content']";
+        public String crossDefaultMapSelection = "i[title=\"Delete\"]";
+        public String clickOnSelectCalendarToOpenDropDown = "[formcontrolname=\"schedulers\"]";
+        public String selectOptionFromCalendarDropdown = "mat-option:nth-child(5) mat-pseudo-checkbox:nth-child(1)");
+        public String selectUpdateOptionFromCalendarDropdown = "mat-option:nth-child(4) mat-pseudo-checkbox:nth-child(1)");
+        public String outsideElement = "body";
+        public String clickOnMapVisibilityForVehiclesAllOption = "mat-checkbox[formcontrolname=\"allowAllVehicleGroups\"] div[class=\"mat-checkbox-inner-container\"]");
+        public String clickOnMapVisibilityDropdown = "[formcontrolname=\"vehicleGroups\"]";
+        public String clickOnDropDownListToSelectVehicle = "mat-option:nth-child(3) mat-pseudo-checkbox:nth-child(1)";
+        public String clickOnDropDownlistToDeSelectVehicle = "mat-option:nth-child(3) mat-pseudo-checkbox:nth-child(1)";
+        public String clickOnDropDownlistToSelectUpdateVehicle = "mat-option:nth-child(2) mat-pseudo-checkbox:nth-child(1)";
+
+        public String clickOnNotificationTab = "//div[contains(text(),'Notifications')]";
+        public String clickOnJobToViewNotificationOptions = "mat-expansion-panel:nth-child(1)";
+        public String clickOnJobPutOnHold = ".mat-slide-toggle-thumb";
+        public String clickOnRecipient = "div[class=\"mat-select-value ng-tns-c138-55\"] span:nth-child(1)";
+        public String selectEmailOfJobOnHold = "mat-option:nth-child(3) mat-pseudo-checkbox:nth-child(1)";
+        public String selectOptionJobOnHoldPopup = "label[for='mat-slide-toggle-2-input'] div[class=\"mat-slide-toggle-thumb-container\"]";
+        public String selectOptionJobCompleted = "label[for='mat-slide-toggle-3-input'] div[class='mat-slide-toggle-thumb']";
+        public String selectOptionJobCompletedPopup = "label[for='mat-slide-toggle-4-input'] div[class='mat-slide-toggle-thumb']";
+        public String clickOnInvoiceToViewNotificationOption = "mat-expansion-panel:nth-child(2)";
+        public String selectOptionInvoiceOverDue = "//span[contains(text(),'Overdue Invoices')]//preceding-sibling::div";
+        public String selectOptionInvoiceOverDuePopup = "label[for='mat-slide-toggle-6-input'] div[class=\"mat-slide-toggle-thumb-container\"]";
+        public String selectOptionInvoicePaid = "//span[contains(text(),'Paid Invoices')]//preceding-sibling::div";
+        public String selectOptionInvoicePaidPopup = "label[for='mat-slide-toggle-8-input'] div[class='mat-slide-toggle-thumb']";
+        public String clickOnEstimatesToViewNotificationOption = "mat-expansion-panel:nth-child(3)";
+        public String clickOnMobileUserToViewNotificationOption = "mat-expansion-panel:nth-child(4)";
+        public String clickOnContractsToViewNotificationOption = "mat-expansion-panel:nth-child(5)";
+        public String clickOnEquipmentToViewNotificationOption = "mat-expansion-panel:nth-child(6)";
+        public String clickOnInventoryToViewNotificationOption = "mat-expansion-panel:nth-child(7)";
+        public String clickOnVehiclesToViewNotificationOption = "mat-expansion-panel:nth-child(8)";
+        public String clickOnUserPreferenceTab ="//div[contains(text(),'User Preferences')]";
+        public String clickOnDropDownToSelectRedirectPage = "[formcontrolname=\"defaultTab\"]";
+        public String selectOptionFromDropDownForRedirectPageAfterLogin = "mat-option:nth-child(1) span:nth-child(1)";
+        public String selectOptionFromDropDownForUpdateRedirectPageAfterLogin = "mat-option:nth-child(2) span:nth-child(1)";
+        public String clickOnEstimateDropDown = "[formcontrolname=\"defaultEstimateTemplateId\"]";
+        public String clickOnEstimatelistToSelectTemplate = "mat-option:nth-child(2) span:nth-child(1)";
+        public String clickOnEstimatelistToSelectUpdatedTemplate = "mat-option:nth-child(3) span:nth-child(1)";
+        public String clickOnEstimateEmailTemplateDropdown = "[formcontrolname=\"defaultEstimateEmailTemplateId\"]";
+        public String selectTheEstimateEmailOptionFromTheDropdownList = "mat-option:nth-child(2) span:nth-child(1)";
+        public String selectTheUpdatedEstimateEmailOptionFromTheDropdownList = "mat-option:nth-child(1) span:nth-child(1)";
+        public String clickOnInvoiceEmailTemplateDropdown = "[formcontrolname=\"defaultInvoiceEmailTemplateId\"]";
+        public String selectTheInvoiceEmailOptionFromTheDropdownList = "mat-option:nth-child(3) span:nth-child(1)";
+        public String selectTheUpdatedInvoiceEmailOptionFromTheDropdownList = "mat-option:nth-child(2) span:nth-child(1)";
+        public String clickOnInvoiceReminderEmailDropdown = "[formcontrolname=\"defaultInvoiceReminderEmailTemplateId\"]";
+        public String selectTheInvoiceReminderOptionFromTheDropdownList = "mat-option:nth-child(2) span:nth-child(1)";
+        public String selectTheUpdatedInvoiceReminderOptionFromTheDropdownList = "mat-option:nth-child(1) span:nth-child(1)";
+        public String clickOnServiceAgreementDropdown = "[formcontrolname=\"defaultServiceAgreementEmailTemplateId\"]";
+        public String selectTheServiceAgreementOptionFromDropdown = "mat-option:nth-child(2) span:nth-child(1)";
+        public String selectUpdateTheServiceAgreementOptionFromDropdown = "mat-option:nth-child(1) span:nth-child(1)";
+        public String clickOnMembershipEmailDropdown = "[formcontrolname=\"defaultMembershipEmailTemplateId\"]";
+        public String selectTheMembershipEmailOptionFromDropdown = "mat-option:nth-child(2) span:nth-child(1)";
+        public String selectTheUpdatedMembershipEmailOptionFromDropdown = "mat-option:nth-child(1) span:nth-child(1)";
+        public String clickOnFormEmailDropdown = "[formcontrolname=\"defaultFormEmailTemplateId\"]";
+        public String selectTheFormEmailOptionFromDropdown = "mat-option:nth-child(2) span:nth-child(1)";
+        public String selectTheUpdatedFormEmailOptionFromDropdown = "mat-option:nth-child(1) span:nth-child(1)";
+        public String clickOnSaveButton = "mat-dialog-actions button:nth-child(2)";
 
         // Constructor
         public OfficerPage(WebDriver driver) {
                 this.driver = driver;
                 this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                this.common = new CommonPage(driver);
         }
 
         public void newEmail(String email) {
@@ -28,45 +91,46 @@ public class OfficerPage {
                 driver.findElement(officerNewPassword).sendKeys(passwordNew);
         }
 
-        public void confirmNewPassword(String confirmPassword){
+        public void confirmNewPassword(String confirmPassword) {
                 driver.findElement(confirmPasswordNew).sendKeys(confirmPassword);
         }
 
-        public void firstName(String firstName){
+        public void firstName(String firstName) {
                 driver.findElement(firstNameOfOfficerUser).clear();
                 driver.findElement(firstNameOfOfficerUser).sendKeys(firstName);
         }
 
-        public void lastName(String lastName){
+        public void lastName(String lastName) {
                 driver.findElement(lastNameOfOfficerUser).clear();
                 driver.findElement(lastNameOfOfficerUser).sendKeys(lastName);
         }
 
-        public void phone(String phone){
+        public void phone(String phone) {
                 driver.findElement(phoneNumberOfOfficerUser).clear();
                 driver.findElement(phoneNumberOfOfficerUser).sendKeys(phone);
         }
 
-        public void street(String street){
+        public void street(String street) {
                 driver.findElement(streetOfOfficerUser).clear();
                 driver.findElement(streetOfOfficerUser).sendKeys(street);
         }
 
-        public void city(String city){
+        public void city(String city) {
                 driver.findElement(cityNameOfOfficerUser).clear();
                 driver.findElement(cityNameOfOfficerUser).sendKeys(city);
         }
 
-        public void state(String state){
+        public void state(String state) {
                 driver.findElement(stateOfOfficerUser).clear();
                 driver.findElement(stateOfOfficerUser).sendKeys(state);
         }
 
-        public void zip(String zip){
+        public void zip(String zip) {
                 driver.findElement(zipCodeOfficerUser).clear();
                 driver.findElement(zipCodeOfficerUser).sendKeys(zip);
         }
-        public void country(String country){
+
+        public void country(String country) {
                 driver.findElement(countryOfficerUser).clear();
                 driver.findElement(countryOfficerUser).sendKeys(country);
         }
@@ -75,7 +139,7 @@ public class OfficerPage {
                 driver.findElement(outsideElement).click();
         }
 
-        public void clickOnFilterfield(String email){
+        public void clickOnFilterfield(String email) {
                 driver.findElement(SearchOfficerUser).sendKeys(email);
         }
 
@@ -86,58 +150,76 @@ public class OfficerPage {
         public String getOfficerFirstName() {
                 return driver.findElement(firstNameOfOfficerUser).getAttribute("value");
         }
+
         public String getOfficerLastName() {
                 return driver.findElement(lastNameOfOfficerUser).getAttribute("value");
         }
+
         public String getOfficerPhoneNumber() {
                 return driver.findElement(phoneNumberOfOfficerUser).getAttribute("value");
         }
+
         public String getSelectedMobileProviderText() {
                 return driver.findElement(selectOptionOfMobile).getText().trim();
         }
+
         public String getOfficerStreet() {
                 return driver.findElement(streetOfOfficerUser).getAttribute("value");
         }
+
         public String getOfficerCityName() {
                 return driver.findElement(cityNameOfOfficerUser).getAttribute("value");
         }
+
         public String getOfficerStateName() {
                 return driver.findElement(stateOfOfficerUser).getAttribute("value");
         }
+
         public String getOfficerZipNumber() {
                 return driver.findElement(zipCodeOfficerUser).getAttribute("value");
         }
+
         public String getOfficerCountryName() {
                 return driver.findElement(countryOfficerUser).getAttribute("value");
         }
-        public String getSelectedCalendarText(){
+
+        public String getSelectedCalendarText() {
                 return driver.findElement(clickOnSelectCalendarToOpenDropDown).getText().trim();
         }
-        public String getSelectedVehicleText(){
+
+        public String getSelectedVehicleText() {
                 return driver.findElement(clickOnMapVisibilityDropdown).getText().trim();
         }
-        public String getSelectedRedirectpathNameAfterLoginText(){
+
+        public String getSelectedRedirectpathNameAfterLoginText() {
                 return driver.findElement(clickOnDropDownToSelectRedirectPage).getText().trim();
         }
-        public String getSelectedEstimeateTemplateText(){
+
+        public String getSelectedEstimeateTemplateText() {
                 return driver.findElement(clickOnEstimateDropDown).getText().trim();
         }
-        public String getSelectedEmailEstimeateTemplateText(){
+
+        public String getSelectedEmailEstimeateTemplateText() {
                 return driver.findElement(clickOnEstimateEmailTemplateDropdown).getText().trim();
         }
-        public String getSelectedInvoiceEmailemplateText(){
+
+        public String getSelectedInvoiceEmailemplateText() {
                 return driver.findElement(clickOnInvoiceEmailTemplateDropdown).getText().trim();
         }
-        public String getSelectedInvoiceReminderEmailTemplateText(){
+
+        public String getSelectedInvoiceReminderEmailTemplateText() {
                 return driver.findElement(clickOnInvoiceReminderEmailDropdown).getText().trim();
         }
-        public String getSelectedServiceAgreementEmailTemplateText(){
+
+        public String getSelectedServiceAgreementEmailTemplateText() {
                 return driver.findElement(clickOnServiceAgreementDropdown).getText().trim();
         }
-        public String getSelectedMembershipEmailemplateText(){
+
+        public String getSelectedMembershipEmailemplateText() {
                 return driver.findElement(clickOnMembershipEmailDropdown).getText().trim();
         }
-        public String getSelectedFormEmailTemplateText(){
+
+        public String getSelectedFormEmailTemplateText() {
                 return driver.findElement(clickOnFormEmailDropdown).getText().trim();
         }
 
@@ -152,34 +234,35 @@ public class OfficerPage {
         public void createOfficeUser(webData userData) {
                 navigateToOfficerUser();
                 registrationOfOfficerUser(userData);
-//                permissionSettingOfOfficerUser();
+                permissionSettingOfOfficerUser();
                 notificationOfOfficerUser();
-//                userPreferenceOfOfficerUser();
+                userPreferenceOfOfficerUser();
                 handleLogoutFlow();
         }
 
-//        public void verifyCreatedOfficerUserData(webData userData){
-//                performAssertionToVerifyInputDataOfOfficerUser(userData);
-//        }
+        public void verifyCreatedOfficerUserData(webData userData) {
+                performAssertionToVerifyInputDataOfOfficerUser(userData);
+        }
 
-//        public void updateOfficerUser(webData userData){
-//                navigateToOfficerUser();
-//                clickOnFilterfield(userData.getEmail());
-//                waitInSeconds(5);
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnSearchCreatedOfficerUser)).click();
-//                waitInSeconds(6);
-//                fillOfficerUserForm(userData);
-//                selectUpdatedRole();
-//                selectUpdatedMobileNetProvider();
-//                permissionSettingOfUpdatedOfficerUser();
-//                notificationOfOfficerUser();
-//                userPreferenceOfUpdatedOfficerUser();
-//                handleLogoutFlow();
-//        }
-//        public void verifyUpdatedOfficerUserData(webData userData){
-//                performAssertionToVerifyUpdatedInputDataOfOfficerUser(userData);
-//
-//        }
+        public void updateOfficerUser(webData userData) {
+                navigateToOfficerUser();
+                clickOnFilterfield(userData.getEmail());
+                waitInSeconds(5);
+                wait.until(ExpectedConditions.elementToBeClickable(clickOnSearchCreatedOfficerUser)).click();
+                waitInSeconds(6);
+                fillOfficerUserForm(userData);
+                selectUpdatedRole();
+                selectUpdatedMobileNetProvider();
+                permissionSettingOfUpdatedOfficerUser();
+                notificationOfOfficerUser();
+                userPreferenceOfUpdatedOfficerUser();
+                handleLogoutFlow();
+        }
+
+        public void verifyUpdatedOfficerUserData(webData userData) {
+                performAssertionToVerifyUpdatedInputDataOfOfficerUser(userData);
+
+        }
 
         public void navigateToOfficerUser() {
                 waitInSeconds(5);
@@ -191,7 +274,7 @@ public class OfficerPage {
                 waitInSeconds(5);
         }
 
-        public void fillOfficerUserForm(@org.jetbrains.annotations.NotNull webData userData){
+        public void fillOfficerUserForm(webData userData) {
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnNewPassword)).click();
                 passwordNew(userData.getPasswordNew());
                 waitInSeconds(2);
@@ -211,37 +294,39 @@ public class OfficerPage {
                 wait.until(ExpectedConditions.elementToBeClickable(addNewButton)).click();
                 waitInSeconds(5);
                 newEmail(userData.getEmail());
-//                fillOfficerUserForm(userData);
+                fillOfficerUserForm(userData);
                 selectRole();
                 waitInSeconds(2);
                 selectMobileNetProvider();
         }
 
-        public void selectRole(){
+        public void selectRole() {
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnRole)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(selectOptionEditView));
                 waitInSeconds(2);
                 wait.until(ExpectedConditions.elementToBeClickable(selectOptionEditView)).click();
         }
-        public void selectUpdatedRole(){
+
+        public void selectUpdatedRole() {
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnRole)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(selectOptionAdmin));
                 waitInSeconds(2);
                 wait.until(ExpectedConditions.elementToBeClickable(selectOptionAdmin)).click();
         }
 
-        public void selectMobileNetProvider(){
+        public void selectMobileNetProvider() {
                 wait.until(ExpectedConditions.elementToBeClickable(selectOptionOfMobile)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(optionFromDropDownOfMobile));
                 wait.until(ExpectedConditions.elementToBeClickable(optionFromDropDownOfMobile)).click();
         }
-        public void selectUpdatedMobileNetProvider(){
+
+        public void selectUpdatedMobileNetProvider() {
                 wait.until(ExpectedConditions.elementToBeClickable(selectOptionOfMobile)).click();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(updateOptionFromDropDownOfMobile));
                 wait.until(ExpectedConditions.elementToBeClickable(updateOptionFromDropDownOfMobile)).click();
         }
 
-        public void permissionSettingOfUpdatedOfficerUser(){
+        public void permissionSettingOfUpdatedOfficerUser() {
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnPremissionTab)).click();
                 wait.until(ExpectedConditions.elementToBeClickable(crossDefaultMapSelection)).click();
                 waitInSeconds(2);
@@ -257,7 +342,8 @@ public class OfficerPage {
                 clickOutsideDropdown();
                 waitInSeconds(3);
         }
-        public void permissionSettingOfOfficerUser(){
+
+        public void permissionSettingOfOfficerUser() {
                 wait.until(ExpectedConditions.elementToBeClickable(clickOnPremissionTab)).click();
                 wait.until(ExpectedConditions.elementToBeClickable(crossDefaultMapSelection)).click();
                 waitInSeconds(2);
@@ -275,107 +361,104 @@ public class OfficerPage {
                 waitInSeconds(3);
         }
 
-        public void notificationOfOfficerUser(){
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnNotificationTab)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnJobToViewNotificationOptions)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnJobPutOnHold)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnRecipient)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(selectEmailOfJobOnHold)).click();
-//                clickOutsideDropdown();
-//                wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobOnHoldPopup)).click();
-//                waitInSeconds(2);
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobCompleted)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobCompletedPopup)).click();
-                waitInSeconds(5);
+        public void notificationOfOfficerUser() {
+                common.waitForElementClickableByXpath(clickOnNotificationTab).click();
+                common.waitForElementClickableByCss(clickOnJobToViewNotificationOptions).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(clickOnJobPutOnHold)).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(clickOnRecipient)).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectEmailOfJobOnHold)).click();
+                // clickOutsideDropdown();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobOnHoldPopup)).click();
+                // waitInSeconds(2);
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobCompleted)).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionJobCompletedPopup)).click();
+                // waitInSeconds(5);
 
+                common.waitForElementClickableByCss(clickOnInvoiceToViewNotificationOption).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoiceOverDue)).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoiceOverDuePopup)).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoicePaid)).click();
+                // wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoicePaidPopup)).click();
 
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnInvoiceToViewNotificationOption)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoiceOverDue)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoiceOverDuePopup)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoicePaid)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionInvoicePaidPopup)).click();
-                waitInSeconds(10);
-
-
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimatesToViewNotificationOption)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnMobileUserToViewNotificationOption)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnContractsToViewNotificationOption)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnEquipmentToViewNotificationOption)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnInventoryToViewNotificationOption)).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(clickOnVehiclesToViewNotificationOption)).click();
+                common.waitForElementClickableByCss(clickOnEstimatesToViewNotificationOption).click();
+                common.waitForElementClickableByCss(clickOnMobileUserToViewNotificationOption).click();
+                common.waitForElementClickableByCss(clickOnContractsToViewNotificationOption).click();
+                common.waitForElementClickableByCss(clickOnEquipmentToViewNotificationOption).click();
+                common.waitForElementClickableByCss(clickOnInventoryToViewNotificationOption).click();
+                common.waitForElementClickableByCss(clickOnVehiclesToViewNotificationOption).click();
         }
 
-        public void userPreferenceOfUpdatedOfficerUser(){
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnUserPreferenceTab)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnDropDownToSelectRedirectPage)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectOptionFromDropDownForUpdateRedirectPageAfterLogin));
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionFromDropDownForUpdateRedirectPageAfterLogin)).click();
+        public void userPreferenceOfUpdatedOfficerUser() {
+                common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
+                common.waitForElementVisibleByCss(clickOnDropDownToSelectRedirectPage).click();
+                common.waitForElementVisibleByCss(selectOptionFromDropDownForUpdateRedirectPageAfterLogin);
+                common.waitForElementVisibleByCss(selectOptionFromDropDownForUpdateRedirectPageAfterLogin).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimateDropDown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(clickOnEstimatelistToSelectUpdatedTemplate));
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimatelistToSelectUpdatedTemplate)).click();
+                common.waitForElementVisibleByCss(clickOnEstimateDropDown).click();
+                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectUpdatedTemplate);
+                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectUpdatedTemplate).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimateEmailTemplateDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheUpdatedEstimateEmailOptionFromTheDropdownList));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheUpdatedEstimateEmailOptionFromTheDropdownList)).click();
+                common.waitForElementVisibleByCss(clickOnEstimateEmailTemplateDropdown).click();
+                common.waitForElementVisibleByCss(selectTheUpdatedEstimateEmailOptionFromTheDropdownList);
+                common.waitForElementVisibleByCss(selectTheUpdatedEstimateEmailOptionFromTheDropdownList).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnInvoiceEmailTemplateDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheUpdatedInvoiceEmailOptionFromTheDropdownList));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheUpdatedInvoiceEmailOptionFromTheDropdownList)).click();
+                common.waitForElementVisibleByCss(clickOnInvoiceEmailTemplateDropdown).click();
+                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceEmailOptionFromTheDropdownList);
+                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceEmailOptionFromTheDropdownList).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnInvoiceReminderEmailDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheUpdatedInvoiceReminderOptionFromTheDropdownList));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheUpdatedInvoiceReminderOptionFromTheDropdownList)).click();
+                common.waitForElementVisibleByCss(clickOnInvoiceReminderEmailDropdown).click();
+                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceReminderOptionFromTheDropdownList);
+                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceReminderOptionFromTheDropdownList).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnServiceAgreementDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectUpdateTheServiceAgreementOptionFromDropdown));
-                wait.until(ExpectedConditions.elementToBeClickable(selectUpdateTheServiceAgreementOptionFromDropdown)).click();
+                common.waitForElementVisibleByCss(clickOnServiceAgreementDropdown).click();
+                common.waitForElementVisibleByCss(selectUpdateTheServiceAgreementOptionFromDropdown);
+                common.waitForElementVisibleByCss(selectUpdateTheServiceAgreementOptionFromDropdown).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnMembershipEmailDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheUpdatedMembershipEmailOptionFromDropdown));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheUpdatedMembershipEmailOptionFromDropdown)).click();
+                common.waitForElementVisibleByCss(clickOnMembershipEmailDropdown).click();
+                common.waitForElementVisibleByCss(selectTheUpdatedMembershipEmailOptionFromDropdown);
+                common.waitForElementVisibleByCss(selectTheUpdatedMembershipEmailOptionFromDropdown).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnFormEmailDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheUpdatedFormEmailOptionFromDropdown));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheUpdatedFormEmailOptionFromDropdown)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnSaveButton)).click();
+                common.waitForElementVisibleByCss(clickOnFormEmailDropdown).click();
+                common.waitForElementVisibleByCss(selectTheUpdatedFormEmailOptionFromDropdown);
+                common.waitForElementVisibleByCss(selectTheUpdatedFormEmailOptionFromDropdown).click();
+                common.waitForElementVisibleByCss(clickOnSaveButton).click();
                 waitInSeconds(5);
         }
 
-        public void userPreferenceOfOfficerUser(){
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnUserPreferenceTab)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnDropDownToSelectRedirectPage)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectOptionFromDropDownForRedirectPageAfterLogin));
-                wait.until(ExpectedConditions.elementToBeClickable(selectOptionFromDropDownForRedirectPageAfterLogin)).click();
+        public void userPreferenceOfOfficerUser() {
+                common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
+                common.waitForElementClickableByCss(clickOnDropDownToSelectRedirectPage).click();
+                common.waitForElementVisibleByCss(selectOptionFromDropDownForRedirectPageAfterLogin);
+                common.waitForElementVisibleByCss(selectOptionFromDropDownForRedirectPageAfterLogin).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimateDropDown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(clickOnEstimatelistToSelectTemplate));
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimatelistToSelectTemplate)).click();
+                common.waitForElementVisibleByCss(clickOnEstimateDropDown).click();
+                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectTemplate);
+                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectTemplate).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnEstimateEmailTemplateDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheEstimateEmailOptionFromTheDropdownList));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheEstimateEmailOptionFromTheDropdownList)).click();
+                common.waitForElementVisibleByCss(clickOnEstimateEmailTemplateDropdown).click();
+                common.waitForElementVisibleByCss(selectTheEstimateEmailOptionFromTheDropdownList);
+                common.waitForElementVisibleByCss(selectTheEstimateEmailOptionFromTheDropdownList).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnInvoiceEmailTemplateDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheInvoiceEmailOptionFromTheDropdownList));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheInvoiceEmailOptionFromTheDropdownList)).click();
+                common.waitForElementVisibleByCss(clickOnInvoiceEmailTemplateDropdown).click();
+                common.waitForElementVisibleByCss(selectTheInvoiceEmailOptionFromTheDropdownList);
+                common.waitForElementVisibleByCss(selectTheInvoiceEmailOptionFromTheDropdownList).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnInvoiceReminderEmailDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheInvoiceReminderOptionFromTheDropdownList));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheInvoiceReminderOptionFromTheDropdownList)).click();
+                common.waitForElementVisibleByCss(clickOnInvoiceReminderEmailDropdown).click();
+                common.waitForElementVisibleByCss(selectTheInvoiceReminderOptionFromTheDropdownList);
+                common.waitForElementVisibleByCss(selectTheInvoiceReminderOptionFromTheDropdownList).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnServiceAgreementDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheServiceAgreementOptionFromDropdown));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheServiceAgreementOptionFromDropdown)).click();
+                common.waitForElementVisibleByCss(clickOnServiceAgreementDropdown).click();
+                common.waitForElementVisibleByCss(selectTheServiceAgreementOptionFromDropdown);
+                common.waitForElementVisibleByCss(selectTheServiceAgreementOptionFromDropdown).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnMembershipEmailDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheMembershipEmailOptionFromDropdown));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheMembershipEmailOptionFromDropdown)).click();
+                common.waitForElementVisibleByCss(clickOnMembershipEmailDropdown).click();
+                common.waitForElementVisibleByCss(selectTheMembershipEmailOptionFromDropdown);
+                common.waitForElementVisibleByCss(selectTheMembershipEmailOptionFromDropdown).click();
                 clickOutsideDropdown();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnFormEmailDropdown)).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(selectTheFormEmailOptionFromDropdown));
-                wait.until(ExpectedConditions.elementToBeClickable(selectTheFormEmailOptionFromDropdown)).click();
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnSaveButton)).click();
+                common.waitForElementVisibleByCss(clickOnFormEmailDropdown).click();
+                common.waitForElementVisibleByCss(selectTheFormEmailOptionFromDropdown);
+                common.waitForElementVisibleByCss(selectTheFormEmailOptionFromDropdown).click();
+                common.waitForElementVisibleByCss(clickOnSaveButton).click();
                 waitInSeconds(5);
         }
 
@@ -399,7 +482,7 @@ public class OfficerPage {
                 waitInSeconds(2);
                 Assert.assertEquals(getSelectedCalendarText(), "Master Schedule", "Calendar selection mismatch");
                 Assert.assertEquals(getSelectedVehicleText(), "Usman Flow", "Vehicle selection mismatch");
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnUserPreferenceTab)).click();
+                common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
                 waitInSeconds(2);
                 Assert.assertEquals(getSelectedRedirectpathNameAfterLoginText(), "Map", "Map selection mismatch");
                 Assert.assertEquals(getSelectedEstimeateTemplateText(), "HVAC Maintenance Proposal Copy", "Estimate is mismatch");
@@ -410,6 +493,7 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedMembershipEmailemplateText(), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email Email is mismatch");
                 Assert.assertEquals(getSelectedFormEmailTemplateText(), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email is mismatch");
         }
+
         public void performAssertionToVerifyUpdatedInputDataOfOfficerUser(webData updateOfficerUser) {
                 navigateToOfficerUser();
                 clickOnFilterfield(updateOfficerUser.getEmail());
@@ -430,7 +514,7 @@ public class OfficerPage {
                 waitInSeconds(2);
                 Assert.assertEquals(getSelectedCalendarText(), "Lawn Jobs", "Calendar selection mismatch");
                 Assert.assertEquals(getSelectedVehicleText(), "Ken's crew", "Vehicle selection mismatch");
-                wait.until(ExpectedConditions.elementToBeClickable(clickOnUserPreferenceTab)).click();
+                common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
                 waitInSeconds(2);
                 Assert.assertEquals(getSelectedRedirectpathNameAfterLoginText(), "Customer", "Customer selection mismatch");
                 Assert.assertEquals(getSelectedEstimeateTemplateText(), "Planned Maintenance Agreement", "Estimate is mismatch");
@@ -441,6 +525,7 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedMembershipEmailemplateText(), "Company Default", "Form Email is mismatch");
                 Assert.assertEquals(getSelectedFormEmailTemplateText(), "Company Default", "Form Email is mismatch");
         }
+
         public void handleLogoutFlow() {
                 WebElement profile = wait.until(ExpectedConditions.visibilityOfElementLocated(profileIcon));
                 Assert.assertTrue(profile.isDisplayed(), "Login was not successful. Profile icon not found.");

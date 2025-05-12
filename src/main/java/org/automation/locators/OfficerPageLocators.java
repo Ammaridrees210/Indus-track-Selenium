@@ -61,10 +61,6 @@ public class OfficerPageLocators {
     public static final By selectOptionInvoicePaid = xpath("//span[contains(text(),'Paid Invoices')]//preceding-sibling::div");
     public static final By selectOptionInvoicePaidPopup = By.cssSelector("label[for='mat-slide-toggle-8-input'] div[class='mat-slide-toggle-thumb']");
 
-
-
-
-
     public static final By clickOnEstimatesToViewNotificationOption = By.cssSelector("mat-expansion-panel:nth-child(3)");
     public static final By clickOnMobileUserToViewNotificationOption = By.cssSelector("mat-expansion-panel:nth-child(4)");
     public static final By clickOnContractsToViewNotificationOption = By.cssSelector("mat-expansion-panel:nth-child(5)");
@@ -101,8 +97,4 @@ public class OfficerPageLocators {
     public static final By clickOnSearchCreatedOfficerUser = By.cssSelector("tbody tr:nth-child(1) td:nth-child(2)");
     public static final By profileIcon = By.cssSelector(".dropdown .fa-user-circle");
     public static final By logoutButton = By.cssSelector("a[title='LogOut']");
-
-
-//    public String getElementByCss(String selector) {
-//    };
 }
