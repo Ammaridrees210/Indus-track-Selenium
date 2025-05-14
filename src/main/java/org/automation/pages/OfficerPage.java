@@ -189,8 +189,6 @@ public class OfficerPage {
         public void clickLogout() {
                 common.findElementByCss(logoutButton).click();
         }
-
-
         public void createOfficeUser(String role, webData userData) {
                 navigateToOfficerUser();
                 AddNewOfficerUser();

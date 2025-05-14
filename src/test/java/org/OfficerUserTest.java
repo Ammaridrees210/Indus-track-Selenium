@@ -17,12 +17,9 @@ public class OfficerUserTest extends BaseWebTest {
     private LoginPage loginPage;
 
     @BeforeMethod
-    public void setUpLogin() throws IOException {
+    public void setUpLogin() {
         driver.get("https://onetrackuiprerelease.azurewebsites.net/login");
         loginPage = new LoginPage(driver);
-
-        webData loginData = TestDataUtil.getValidData().get(0);
-        loginPage.login(loginData.getUsername(), loginData.getPassword());
     }
 
     @DataProvider(name = "officerUserViewOnly")
@@ -36,7 +33,9 @@ public class OfficerUserTest extends BaseWebTest {
     }
 
     @Test(dataProvider = "officerUserViewOnly", priority = 1)
-    public void createOfficerUserViewOnly(webData officerUserViewOnly) {
+    public void createOfficerUserViewOnly(webData officerUserViewOnly) throws IOException {
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
         officerPage.createOfficeUser("ViewOnly", officerUserViewOnly);
@@ -62,7 +61,9 @@ public class OfficerUserTest extends BaseWebTest {
     }
 
     @Test(dataProvider = "officerUserViewEditAccess", priority = 3)
-    public void createOfficerUserEditView(webData officerUserEditView){
+    public void createOfficerUserEditView(webData officerUserEditView) throws IOException {
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
         officerPage.createOfficeUser("EditView" ,officerUserEditView);
@@ -88,7 +89,9 @@ public class OfficerUserTest extends BaseWebTest {
     }
 
     @Test(dataProvider = "officerUserAdminAccess", priority = 5)
-    public void createOfficerUserAdmin(webData officerUserAdmin){
+    public void createOfficerUserAdmin(webData officerUserAdmin) throws IOException {
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
         officerPage.createOfficeUser("Admin", officerUserAdmin);
@@ -114,7 +117,9 @@ public class OfficerUserTest extends BaseWebTest {
     }
 
     @Test(dataProvider = "officerUserCustomizeAccess", priority = 7)
-    public void createOfficerUserCustomize(webData officerUserCustomize){
+    public void createOfficerUserCustomize(webData officerUserCustomize) throws IOException {
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
         officerPage.createOfficeUser("Customize",officerUserCustomize);
