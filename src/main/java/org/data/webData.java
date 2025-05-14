@@ -55,6 +55,7 @@ public class webData {
         public void setEmail(String email) {
                 this.email = email;
         }
+        
         public String getPasswordNew() {
                 return passwordNew;
         }

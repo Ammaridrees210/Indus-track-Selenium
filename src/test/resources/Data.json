@@ -31,34 +31,64 @@
                 "isValid": false
         }
         ],
-        "officerUser":[
-        {
-                "email":"hamza@gmail.com",
-                "passwordNew": "hamza123",
-                "confirmPassword": "hamza123",
-                "firstName": "Hamza",
-                "lastName": "khalid",
-                "phone":"03006051107",
-                "street":"street k",
-                "city":"sargodha",
-                "state":"punjab",
-                "zip":"40100",
-                "country":"pakistan"
-        }
-        ],
-        "updateOfficerUser":[
+        "officerUserViewOnly":[
                 {
                         "email":"hamza@gmail.com",
+                        "passwordNew": "hamza123",
+                        "confirmPassword": "hamza123",
+                        "firstName": "Hamza",
+                        "lastName": "khalid",
+                        "phone":"03006051107",
+                        "street":"street k",
+                        "city":"sargodha",
+                        "state":"punjab",
+                        "zip":"40100",
+                        "country":"pakistan"
+                }
+        ],
+        "officerUserEditView":[
+                {
+                        "email":"hamzakh@gmail.com",
                         "passwordNew": "hamza1234",
                         "confirmPassword": "hamza1234",
-                        "firstName": "Hamza120",
+                        "firstName": "Hamza101",
                         "lastName": "khalid",
                         "phone":"03097076719",
-                        "street":"street W",
-                        "city":"sargodha, Punjab",
-                        "state":"punjab, Pakistan",
+                        "street":"street k",
+                        "city":"Karachi",
+                        "state":"sindh",
                         "zip":"40100",
-                        "country":"pakistan, Asia"
+                        "country":"pakistan"
+                }
+        ],
+        "officerUserAdmin":[
+                {
+                        "email":"hamzakhalid@gmail.com",
+                        "passwordNew": "hamza!1234",
+                        "confirmPassword": "hamza!1234",
+                        "firstName": "Hamziii",
+                        "lastName": "QA Engineer",
+                        "phone":"03156051107",
+                        "street":"street w, House no 20, Block W",
+                        "city":"lahore,Pakistan",
+                        "state":"punjab",
+                        "zip":"40100",
+                        "country":"pakistan"
+                }
+        ],
+        "officerUserCustomize":[
+                {
+                        "email":"hamzaKhqae@gmail.com",
+                        "passwordNew": "hamza12345",
+                        "confirmPassword": "hamza12345",
+                        "firstName": "Hamza120",
+                        "lastName": "Senior QA Engineer",
+                        "phone":"03097076719",
+                        "street":"street W",
+                        "city":"Shogran",
+                        "state":"KPK",
+                        "zip":"40100",
+                        "country":"pakistan"
                 }
         ]
 }

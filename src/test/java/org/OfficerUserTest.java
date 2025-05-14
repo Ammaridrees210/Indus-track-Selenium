@@ -17,64 +17,115 @@ public class OfficerUserTest extends BaseWebTest {
     private LoginPage loginPage;
 
     @BeforeMethod
-    public void setUpLogin() {
+    public void setUpLogin() throws IOException {
         driver.get("https://onetrackuiprerelease.azurewebsites.net/login");
         loginPage = new LoginPage(driver);
+
+        webData loginData = TestDataUtil.getValidData().get(0);
+        loginPage.login(loginData.getUsername(), loginData.getPassword());
     }
 
-    @DataProvider(name = "officerUserData")
-    public Object[][] getOfficerUserData() throws IOException {
-        List<webData> officerUsers = TestDataUtil.getOfficerUserData();
-        Object[][] data = new Object[officerUsers.size()][1];
-        for (int i = 0; i < officerUsers.size(); i++) {
-            data[i][0] = officerUsers.get(i);
+    @DataProvider(name = "officerUserViewOnly")
+    public Object[][] getOfficerUserViewOnlyData() throws IOException {
+        List<webData> officerUserViewOnly = TestDataUtil.getOfficerUserViewOnlyData();
+        Object[][] data = new Object[officerUserViewOnly.size()][1];
+        for (int i = 0; i < officerUserViewOnly.size(); i++) {
+            data[i][0] = officerUserViewOnly.get(i);
         }
         return data;
     }
 
-    @Test(dataProvider = "officerUserData", priority = 1)
-    public void createOfficerUser(webData officerUser) throws IOException {
-        webData loginData = TestDataUtil.getValidData().get(0);
-        loginPage.login(loginData.getUsername(), loginData.getPassword());
+    @Test(dataProvider = "officerUserViewOnly", priority = 1)
+    public void createOfficerUserViewOnly(webData officerUserViewOnly) {
 
         OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.createOfficeUser(officerUser);
+        officerPage.createOfficeUser("ViewOnly", officerUserViewOnly);
     }
 
-    @Test(dataProvider = "officerUserData", priority = 2)
-    public void verifyOfficerUser(webData officerUser) throws IOException {
-        webData loginData = TestDataUtil.getValidData().get(0);
-        loginPage.login(loginData.getUsername(), loginData.getPassword());
-
-        OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.verifyCreatedOfficerUserData(officerUser);
-    }
-
-    @DataProvider(name = "officerUserDataUpdate")
-    public Object[][] getUpdateOfficerUserData() throws IOException {
-        List<webData> updateData = TestDataUtil.getUpdateOfficerUserData();
-        Object[][] data = new Object[updateData.size()][1];
-        for (int i = 0; i < updateData.size(); i++) {
-            data[i][0] = updateData.get(i);
-        }
-        return data;
-    }
-
-    @Test(dataProvider = "officerUserDataUpdate", priority = 3)
-    public void enterUpdateOfficerUser(webData updateOfficerUser) throws IOException {
-        webData loginData = TestDataUtil.getValidData().get(0);
-        loginPage.login(loginData.getUsername(), loginData.getPassword());
-
-        OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.updateOfficerUser(updateOfficerUser);
-    }
-
-    @Test(dataProvider = "officerUserDataUpdate", priority = 4)
-    public void verifyupdatedOfficerUser(webData updateOfficerUser) throws IOException {
-        webData loginData = TestDataUtil.getUpdateOfficerUserData().get(0);
+    @Test(dataProvider = "officerUserViewOnly", priority = 2)
+    public void verifyOfficerUserViewOnly(webData officerUserViewOnly) throws IOException {
+        webData loginData = TestDataUtil.getOfficerUserViewOnlyData().get(0);
         loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
 
         OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.verifyUpdatedOfficerUserData(updateOfficerUser);
+        officerPage.verifyViewOnlyCreatedOfficerUserData(officerUserViewOnly);
+    }
+
+    @DataProvider(name = "officerUserViewEditAccess")
+    public Object[][] getOfficerUserEditViewData() throws IOException {
+        List<webData> officerUserEditView = TestDataUtil.getOfficerUserEditViewData();
+        Object[][] data = new Object[officerUserEditView.size()][1];
+        for (int i = 0; i < officerUserEditView.size(); i++) {
+            data[i][0] = officerUserEditView.get(i);
+        }
+        return data;
+    }
+
+    @Test(dataProvider = "officerUserViewEditAccess", priority = 3)
+    public void createOfficerUserEditView(webData officerUserEditView){
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.createOfficeUser("EditView" ,officerUserEditView);
+    }
+
+    @Test(dataProvider = "officerUserViewEditAccess", priority = 4)
+    public void verifyOfficerUserViewEdit(webData officerUserEditView) throws IOException {
+        webData loginData = TestDataUtil.getOfficerUserEditViewData().get(0);
+        loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.verifyEditViewCreatedOfficerUserData(officerUserEditView);
+    }
+
+    @DataProvider(name = "officerUserAdminAccess")
+    public Object[][] getOfficerUserAdminData() throws IOException {
+        List<webData> officerUserAdmin = TestDataUtil.getOfficerUserAdminData();
+        Object[][] data = new Object[officerUserAdmin.size()][1];
+        for (int i = 0; i < officerUserAdmin.size(); i++) {
+            data[i][0] = officerUserAdmin.get(i);
+        }
+        return data;
+    }
+
+    @Test(dataProvider = "officerUserAdminAccess", priority = 5)
+    public void createOfficerUserAdmin(webData officerUserAdmin){
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.createOfficeUser("Admin", officerUserAdmin);
+    }
+
+    @Test(dataProvider = "officerUserAdminAccess", priority = 6)
+    public void verifyOfficerUserAdmin(webData officerUserAdmin) throws IOException {
+        webData loginData = TestDataUtil.getOfficerUserAdminData().get(0);
+        loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.verifyAdminCreatedOfficerUserData(officerUserAdmin);
+    }
+
+    @DataProvider(name = "officerUserCustomizeAccess")
+    public Object[][] getOfficerUserCustomize() throws IOException {
+        List<webData> officerUserCustomize = TestDataUtil.getOfficerUserCustomizeData();
+        Object[][] data = new Object[officerUserCustomize.size()][1];
+        for (int i = 0; i < officerUserCustomize.size(); i++) {
+            data[i][0] = officerUserCustomize.get(i);
+        }
+        return data;
+    }
+
+    @Test(dataProvider = "officerUserCustomizeAccess", priority = 7)
+    public void createOfficerUserCustomize(webData officerUserCustomize){
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.createOfficeUser("Customize",officerUserCustomize);
+    }
+
+    @Test(dataProvider = "officerUserCustomizeAccess", priority = 8)
+    public void verifyOfficerUserCustomize(webData officerUserCustomize) throws IOException {
+        webData loginData = TestDataUtil.getOfficerUserCustomizeData().get(0);
+        loginPage.login(loginData.getEmail(), loginData.getPasswordNew());
+
+        OfficerPage officerPage = new OfficerPage(driver);
+        officerPage.verifyCustomizeCreatedOfficerUserData(officerUserCustomize);
     }
 }

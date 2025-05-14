@@ -49,4 +49,5 @@ public class CommonPage {
     public void waitForUrlContains(String partialUrl) {
         wait.until(ExpectedConditions.urlContains(partialUrl));
     }
+
 }

@@ -1,6 +1,5 @@
 package org.automation.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,7 +43,7 @@ public class LoginPage {
                 common.findElementByCss(crossIcon).click();
             }
         } catch (Exception e) {
-            System.err.println(e);
+            System.err.println("Popup didn't displayed");
         }
     }
 
@@ -65,7 +64,7 @@ public class LoginPage {
     public void handleForgotPasswordFlow(String email) {
         common.waitForElementClickableByCss(forgotPasswordHyperLink).click();
         common.waitForUrlContains(visibilityOfForgotPasswordLink);
-        common.waitForElementVisible( visibilityOfForgotPasswordWording));
+        common.waitForElementVisibleByCss(visibilityOfForgotPasswordWording);
         // Verify final URL
         String expectedUrl = "https://onetrackuiprerelease.azurewebsites.net/forgotpassword";
         String currentUrl = driver.getCurrentUrl();
@@ -77,8 +76,7 @@ public class LoginPage {
     }
 
     public void handleValidLoginFlow() {
-        By profileIcon =  profileFavicon);
-        WebElement profile =common.waitForElementVisible(profileIcon);
+        WebElement profile =common.waitForElementVisibleByCss(profileFavicon);
         Assert.assertTrue(profile.isDisplayed(), "Login was not successful. Profile icon not found.");
         profile.click();
         common.findElementByCss(logoutButton).click();
