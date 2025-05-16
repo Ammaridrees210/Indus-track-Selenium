@@ -38,7 +38,7 @@ public class OfficerUserTest extends BaseWebTest {
         loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.createOfficeUser("ViewOnly", officerUserViewOnly);
+        officerPage.createOfficeUser(officerUserViewOnly);
     }
 
     @Test(dataProvider = "officerUserViewOnly", priority = 2)
@@ -66,7 +66,7 @@ public class OfficerUserTest extends BaseWebTest {
         loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.createOfficeUser("EditView" ,officerUserEditView);
+        officerPage.createOfficeUser(officerUserEditView);
     }
 
     @Test(dataProvider = "officerUserViewEditAccess", priority = 4)
@@ -94,7 +94,7 @@ public class OfficerUserTest extends BaseWebTest {
         loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.createOfficeUser("Admin", officerUserAdmin);
+        officerPage.createOfficeUser(officerUserAdmin);
     }
 
     @Test(dataProvider = "officerUserAdminAccess", priority = 6)
@@ -122,7 +122,7 @@ public class OfficerUserTest extends BaseWebTest {
         loginPage.login(loginData.getUsername(), loginData.getPassword());
 
         OfficerPage officerPage = new OfficerPage(driver);
-        officerPage.createOfficeUser("Customize",officerUserCustomize);
+        officerPage.createOfficeUser(officerUserCustomize);
     }
 
     @Test(dataProvider = "officerUserCustomizeAccess", priority = 8)

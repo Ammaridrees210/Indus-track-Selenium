@@ -8,19 +8,19 @@ public class webData {
         private String username;
         private String password;
         private boolean isValid;
-
         private String email;
         private String passwordNew;
         private String confirmPassword;
+        private String role;
         private String firstName;
         private String lastName;
         private String phone;
+        private String mobileProvider;
         private String street;
         private String city;
         private String state;
         private String zip;
         private String country;
-
 
         public webData() {}
 
@@ -50,6 +50,21 @@ public class webData {
 
         public String getEmail() {
                 return email;
+        }
+
+        public String getRole(){
+                return role;
+        }
+
+        public void setRole(String role){
+                this.role = role;
+        }
+
+        public String getMobileProvider(){
+                return mobileProvider;
+        }
+        public void setMobileProvider(){
+                this.mobileProvider = mobileProvider;
         }
 
         public void setEmail(String email) {

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class OfficerPage {
         private final WebDriver driver;
@@ -189,36 +190,32 @@ public class OfficerPage {
         public void clickLogout() {
                 common.findElementByCss(logoutButton).click();
         }
-        public void createOfficeUser(String role, webData userData) {
+        public void createOfficeUser(webData userData) {
+                String role = userData.getRole().trim();
+                String mobileProvider = userData.getMobileProvider().trim();
                 navigateToOfficerUser();
                 AddNewOfficerUser();
                 fillOfficerUserForm(userData);
+                selectRole(role);
+                selectMobileProvider(mobileProvider);
+
                 waitInSeconds(2);
-                if (role.equalsIgnoreCase ("ViewOnly")) {
-                        selectRoleViewOnly();
-                        selectMobileNetProviderForViewOnly();
+                if (role.equalsIgnoreCase("View only")) {
                         permissionSettingOfficerUserForViewOnly();
                         notificationOfOfficerUser();
                         userPreferenceOfOfficerUser();
 
                 } else if (role.equalsIgnoreCase("EditView")) {
-                        selectRoleEditView();
-                        selectMobileNetProviderForEditView();
                         permissionSettingOfficerUserForEditView();
                         notificationOfOfficerUser();
                         userPreferenceOfOfficerUser();
 
                 } else if (role.equalsIgnoreCase("Admin")) {
-                        selectRoleAdmin();
-                        selectMobileNetProviderForAdmin();
                         permissionSettingOfficerUserForAdmin();
                         notificationOfOfficerUser();
                         userPreferenceOfOfficerUser();
 
                 } else if (role.equalsIgnoreCase("Customize")) {
-                        selectRoleCustomize();
-                        selectMobileNetProviderForAdmin();
-                        selectMobileNetProviderForCustomize();
                         permissionSettingOfficerUserForCustomize();
                         notificationOfOfficerUser();
                         userPreferenceOfCustomizeOfficerUser();
@@ -285,54 +282,87 @@ public class OfficerPage {
                 waitInSeconds(5);
         }
 
-        public void selectRoleViewOnly() {
+        public void selectRole(String roleName) {
                 common.waitForElementClickableByCss(clickOnRole).click();
-                common.waitForElementVisibleByCss(selectOptionViewOnly);
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(selectOptionViewOnly).click();
-        }
-        public void selectRoleEditView() {
-                common.waitForElementClickableByCss(clickOnRole).click();
-                common.waitForElementVisibleByCss(selectOptionEditView);
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(selectOptionEditView).click();
-        }
-        public void selectRoleAdmin() {
-                common.waitForElementClickableByCss(clickOnRole).click();
-                common.waitForElementVisibleByCss(selectOptionAdmin);
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(selectOptionAdmin).click();
-        }
-        public void selectRoleCustomize() {
-                common.waitForElementClickableByCss(clickOnRole).click();
-                common.waitForElementVisibleByCss(selectOptionCustomize);
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(selectOptionCustomize).click();
+                List<WebElement> options = driver.findElements(By.cssSelector(".mat-select-panel mat-option span"));
+                for (WebElement option : options) {
+                        String text = option.getText().trim();
+                        if (text.equalsIgnoreCase(roleName.trim())) {
+                                waitInSeconds(1);
+                                option.click();
+                                System.out.println("Clicked option: " + text);
+                                return;
+                        }
+                }
+                throw new NoSuchElementException("Role option '" + roleName + "' not found in dropdown.");
+
         }
 
-        public void selectMobileNetProviderForViewOnly() {
+//        public void selectRoleViewOnly() {
+//                common.waitForElementClickableByCss(clickOnRole).click();
+//                common.waitForElementVisibleByCss(selectOptionViewOnly);
+//                waitInSeconds(2);
+//                common.waitForElementClickableByCss(selectOptionViewOnly).click();
+//        }
+//        public void selectRoleEditView() {
+//                common.waitForElementClickableByCss(clickOnRole).click();
+//                common.waitForElementVisibleByCss(selectOptionEditView);
+//                waitInSeconds(2);
+//                common.waitForElementClickableByCss(selectOptionEditView).click();
+//        }
+//        public void selectRoleAdmin() {
+//                common.waitForElementClickableByCss(clickOnRole).click();
+//                common.waitForElementVisibleByCss(selectOptionAdmin);
+//                waitInSeconds(2);
+//                common.waitForElementClickableByCss(selectOptionAdmin).click();
+//        }
+//        public void selectRoleCustomize() {
+//                common.waitForElementClickableByCss(clickOnRole).click();
+//                common.waitForElementVisibleByCss(selectOptionCustomize);
+//                waitInSeconds(2);
+//                common.waitForElementClickableByCss(selectOptionCustomize).click();
+//        }
+        public void selectMobileProvider(String providerName) {
                 common.waitForElementClickableByCss(selectOptionOfMobile).click();
-                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileViewOnly);
-                common.waitForElementClickableByCss(OptionFromDropDownOfMobileViewOnly).click();
+                List<WebElement> options = driver.findElements(By.cssSelector(".mat-select-panel mat-option span"));
+                for (WebElement option : options) {
+                        String text = option.getText().trim();
+                        System.out.println("Mobile provider option found: " + text);
+
+                        if (text.equalsIgnoreCase(providerName.trim())) {
+                                option.click();
+                                System.out.println("Clicked mobile provider option: " + text);
+                                return;
+                        }
+                }
+
+                throw new NoSuchElementException("Mobile provider '" + providerName + "' not found in dropdown.");
         }
 
-        public void selectMobileNetProviderForEditView() {
-                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileEditView);
-                common.waitForElementClickableByCss(OptionFromDropDownOfMobileEditView).click();
-        }
 
-        public void selectMobileNetProviderForAdmin() {
-                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileAdmin);
-                common.waitForElementClickableByCss(OptionFromDropDownOfMobileAdmin).click();
-        }
-
-        public void selectMobileNetProviderForCustomize() {
-                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileCustomize);
-                common.waitForElementClickableByCss(OptionFromDropDownOfMobileCustomize).click();
-        }
+//        public void selectMobileNetProviderForViewOnly() {
+//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
+//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileViewOnly);
+//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileViewOnly).click();
+//        }
+//
+//        public void selectMobileNetProviderForEditView() {
+//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
+//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileEditView);
+//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileEditView).click();
+//        }
+//
+//        public void selectMobileNetProviderForAdmin() {
+//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
+//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileAdmin);
+//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileAdmin).click();
+//        }
+//
+//        public void selectMobileNetProviderForCustomize() {
+//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
+//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileCustomize);
+//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileCustomize).click();
+//        }
 
         public void permissionSettingOfficerUserForViewOnly() {
                 common.waitForElementClickableByCss(clickOnPremissionTab).click();
