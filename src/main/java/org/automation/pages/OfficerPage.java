@@ -1,17 +1,18 @@
 package org.automation.pages;
 
 import org.data.webData;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 public class OfficerPage {
         private final WebDriver driver;
         private final CommonPage common;
+        private final Random rnd = new Random();  // <---- Initialize Random here
+
 
         public String streetOfOfficerUser = "[placeholder='Street']";
         public String cityNameOfOfficerUser = "[placeholder='City']";
@@ -29,29 +30,19 @@ public class OfficerPage {
         public String confirmPasswordNew = "[name=\'repwd\']";
         public String clickOnSaveButtonForPassword = ".mat-focus-indicator.btn.btn-info.mat-button.mat-button-base._mat-animation-noopable";
         public String clickOnRole = "[formcontrolname=\"role\"]";
-        public String selectOptionViewOnly = "mat-option:nth-child(1) span:nth-child(1)";
-        public String selectOptionEditView = "mat-option:nth-child(2) span:nth-child(1)";
-        public String selectOptionAdmin = "mat-option:nth-child(3) span:nth-child(1)";
-        public String selectOptionCustomize = "mat-option:nth-child(4) span:nth-child(1)";
+        public String roleOption = ".mat-select-panel mat-option span";
         public String firstNameOfOfficerUser = "[formcontrolname='firstName']";
         public String lastNameOfOfficerUser = "[formcontrolname='lastName']";
         public String phoneNumberOfOfficerUser = "[formcontrolname='phone']";
         public String selectOptionOfMobile = "[formcontrolname=\"mobileProvider\"]";
-        public String OptionFromDropDownOfMobileViewOnly = "mat-option:nth-child(2) span:nth-child(1)";
-        public String OptionFromDropDownOfMobileEditView = "mat-option:nth-child(3) span:nth-child(1)";
-        public String OptionFromDropDownOfMobileAdmin = "mat-option:nth-child(4) span:nth-child(1)";
-        public String OptionFromDropDownOfMobileCustomize = "mat-option:nth-child(5) span:nth-child(1)";
+        public String selectMobileProviderOption = ".mat-select-panel mat-option span";
         public String clickOnPremissionTab = "div[id='mat-tab-label-1-1'] div[class='mat-tab-label-content']";
         public String crossDefaultMapSelection = "i[title=\"Delete\"]";
         public String clickOnSelectCalendarToOpenDropDown = "[formcontrolname=\"schedulers\"]";
-        public String selectOptionFromCalendarDropdownForViewOnly = "mat-option:nth-child(1) mat-pseudo-checkbox:nth-child(1)";
-        public String selectOptionFromCalendarDropdownForEditView = "mat-option:nth-child(2) mat-pseudo-checkbox:nth-child(1)";
-        public String selectOptionFromCalendarDropdownForAdmin = "mat-option:nth-child(4) mat-pseudo-checkbox:nth-child(1)";
-        public String selectOptionFromCalendarDropdownForCustomize = "mat-option:nth-child(5) mat-pseudo-checkbox:nth-child(1)";
+        public String selectOptions = "mat-option span";
         public String outsideElement = "body";
         public String clickOnMapVisibilityForVehiclesAllOption = "mat-checkbox[formcontrolname=\"allowAllVehicleGroups\"] div[class=\"mat-checkbox-inner-container\"]";
         public String clickOnMapVisibilityDropdown = "[formcontrolname=\"vehicleGroups\"]";
-        public String clickOnDropDownListToSelectVehicle = "mat-option:nth-child(3) mat-pseudo-checkbox:nth-child(1)";
         public String clickOnNotificationTab = "//div[contains(text(),'Notifications')]";
         public String clickOnJobToViewNotificationOptions = "mat-expansion-panel:nth-child(1)";
         public String clickOnInvoiceToViewNotificationOption = "mat-expansion-panel:nth-child(2)";
@@ -63,29 +54,14 @@ public class OfficerPage {
         public String clickOnVehiclesToViewNotificationOption = "mat-expansion-panel:nth-child(8)";
         public String clickOnUserPreferenceTab ="//div[contains(text(),'User Preferences')]";
         public String clickOnDropDownToSelectRedirectPage = "[formcontrolname=\"defaultTab\"]";
-        public String selectOptionFromDropDownForRedirectPageAfterLogin = "mat-option:nth-child(1) span:nth-child(1)";
-        public String selectOptionFromDropDownForUpdateRedirectPageAfterLogin = "mat-option:nth-child(2) span:nth-child(1)";
+        public String selectOption = "div[class='cdk-overlay-pane'] mat-option";
         public String clickOnEstimateDropDown = "[formcontrolname=\"defaultEstimateTemplateId\"]";
-        public String clickOnEstimatelistToSelectTemplate = "mat-option:nth-child(2) span:nth-child(1)";
-        public String clickOnEstimatelistToSelectUpdatedTemplate = "mat-option:nth-child(3) span:nth-child(1)";
         public String clickOnEstimateEmailTemplateDropdown = "[formcontrolname=\"defaultEstimateEmailTemplateId\"]";
-        public String selectTheEstimateEmailOptionFromTheDropdownList = "mat-option:nth-child(2) span:nth-child(1)";
-        public String selectTheUpdatedEstimateEmailOptionFromTheDropdownList = "mat-option:nth-child(1) span:nth-child(1)";
         public String clickOnInvoiceEmailTemplateDropdown = "[formcontrolname=\"defaultInvoiceEmailTemplateId\"]";
-        public String selectTheInvoiceEmailOptionFromTheDropdownList = "mat-option:nth-child(3) span:nth-child(1)";
-        public String selectTheUpdatedInvoiceEmailOptionFromTheDropdownList = "mat-option:nth-child(2) span:nth-child(1)";
         public String clickOnInvoiceReminderEmailDropdown = "[formcontrolname=\"defaultInvoiceReminderEmailTemplateId\"]";
-        public String selectTheInvoiceReminderOptionFromTheDropdownList = "mat-option:nth-child(2) span:nth-child(1)";
-        public String selectTheUpdatedInvoiceReminderOptionFromTheDropdownList = "mat-option:nth-child(1) span:nth-child(1)";
         public String clickOnServiceAgreementDropdown = "[formcontrolname=\"defaultServiceAgreementEmailTemplateId\"]";
-        public String selectTheServiceAgreementOptionFromDropdown = "mat-option:nth-child(2) span:nth-child(1)";
-        public String selectUpdateTheServiceAgreementOptionFromDropdown = "mat-option:nth-child(1) span:nth-child(1)";
         public String clickOnMembershipEmailDropdown = "[formcontrolname=\"defaultMembershipEmailTemplateId\"]";
-        public String selectTheMembershipEmailOptionFromDropdown = "mat-option:nth-child(2) span:nth-child(1)";
-        public String selectTheUpdatedMembershipEmailOptionFromDropdown = "mat-option:nth-child(1) span:nth-child(1)";
         public String clickOnFormEmailDropdown = "[formcontrolname=\"defaultFormEmailTemplateId\"]";
-        public String selectTheFormEmailOptionFromDropdown = "mat-option:nth-child(2) span:nth-child(1)";
-        public String selectTheUpdatedFormEmailOptionFromDropdown = "mat-option:nth-child(1) span:nth-child(1)";
         public String clickOnSaveButton = "mat-dialog-actions button:nth-child(2)";
         public String SearchOfficerUser = "//input[@class='form-control ng-untouched ng-pristine ng-valid']";
         public String clickOnSearchCreatedOfficerUser = "tbody tr:nth-child(1) td:nth-child(2)";
@@ -183,44 +159,22 @@ public class OfficerPage {
                 return common.findElementByCss(cssSelector).getText().trim();
         }
 
-        public void clickProfileIcon() {
-                common.findElementByCss(profileIcon).click();
-        }
-
         public void clickLogout() {
                 common.findElementByCss(logoutButton).click();
         }
+
         public void createOfficeUser(webData userData) {
-                String role = userData.getRole().trim();
-                String mobileProvider = userData.getMobileProvider().trim();
+                boolean isCustomize = userData.getRole().equalsIgnoreCase("Customize");
+
                 navigateToOfficerUser();
                 AddNewOfficerUser();
                 fillOfficerUserForm(userData);
-                selectRole(role);
-                selectMobileProvider(mobileProvider);
-
+                selectRole(userData.getRole());
+                selectMobileProvider(userData.getMobileProvider());
+                setPermissions(userData.getCalendarName(), userData.getVehicleName(),isCustomize);
                 waitInSeconds(2);
-                if (role.equalsIgnoreCase("View only")) {
-                        permissionSettingOfficerUserForViewOnly();
-                        notificationOfOfficerUser();
-                        userPreferenceOfOfficerUser();
-
-                } else if (role.equalsIgnoreCase("EditView")) {
-                        permissionSettingOfficerUserForEditView();
-                        notificationOfOfficerUser();
-                        userPreferenceOfOfficerUser();
-
-                } else if (role.equalsIgnoreCase("Admin")) {
-                        permissionSettingOfficerUserForAdmin();
-                        notificationOfOfficerUser();
-                        userPreferenceOfOfficerUser();
-
-                } else if (role.equalsIgnoreCase("Customize")) {
-                        permissionSettingOfficerUserForCustomize();
-                        notificationOfOfficerUser();
-                        userPreferenceOfCustomizeOfficerUser();
-                }
-
+                notificationOfOfficerUser(userData);
+                userPreferenceOfOfficerUser(userData);
                 logoutFlow();
         }
 
@@ -284,7 +238,7 @@ public class OfficerPage {
 
         public void selectRole(String roleName) {
                 common.waitForElementClickableByCss(clickOnRole).click();
-                List<WebElement> options = driver.findElements(By.cssSelector(".mat-select-panel mat-option span"));
+                List<WebElement> options = driver.findElements(By.cssSelector(roleOption));
                 for (WebElement option : options) {
                         String text = option.getText().trim();
                         if (text.equalsIgnoreCase(roleName.trim())) {
@@ -295,36 +249,13 @@ public class OfficerPage {
                         }
                 }
                 throw new NoSuchElementException("Role option '" + roleName + "' not found in dropdown.");
-
         }
 
-//        public void selectRoleViewOnly() {
-//                common.waitForElementClickableByCss(clickOnRole).click();
-//                common.waitForElementVisibleByCss(selectOptionViewOnly);
-//                waitInSeconds(2);
-//                common.waitForElementClickableByCss(selectOptionViewOnly).click();
-//        }
-//        public void selectRoleEditView() {
-//                common.waitForElementClickableByCss(clickOnRole).click();
-//                common.waitForElementVisibleByCss(selectOptionEditView);
-//                waitInSeconds(2);
-//                common.waitForElementClickableByCss(selectOptionEditView).click();
-//        }
-//        public void selectRoleAdmin() {
-//                common.waitForElementClickableByCss(clickOnRole).click();
-//                common.waitForElementVisibleByCss(selectOptionAdmin);
-//                waitInSeconds(2);
-//                common.waitForElementClickableByCss(selectOptionAdmin).click();
-//        }
-//        public void selectRoleCustomize() {
-//                common.waitForElementClickableByCss(clickOnRole).click();
-//                common.waitForElementVisibleByCss(selectOptionCustomize);
-//                waitInSeconds(2);
-//                common.waitForElementClickableByCss(selectOptionCustomize).click();
-//        }
         public void selectMobileProvider(String providerName) {
                 common.waitForElementClickableByCss(selectOptionOfMobile).click();
-                List<WebElement> options = driver.findElements(By.cssSelector(".mat-select-panel mat-option span"));
+                List<WebElement> options = driver.findElements(By.cssSelector(selectMobileProviderOption));
+                System.out.println("Mobile provider option found: " + options);
+
                 for (WebElement option : options) {
                         String text = option.getText().trim();
                         System.out.println("Mobile provider option found: " + text);
@@ -339,115 +270,63 @@ public class OfficerPage {
                 throw new NoSuchElementException("Mobile provider '" + providerName + "' not found in dropdown.");
         }
 
+        private void safeClick(WebElement el) {
+                try {
+                        el.click();
+                } catch (ElementClickInterceptedException e) {
+                        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+                }
+        }
 
-//        public void selectMobileNetProviderForViewOnly() {
-//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileViewOnly);
-//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileViewOnly).click();
-//        }
-//
-//        public void selectMobileNetProviderForEditView() {
-//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileEditView);
-//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileEditView).click();
-//        }
-//
-//        public void selectMobileNetProviderForAdmin() {
-//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileAdmin);
-//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileAdmin).click();
-//        }
-//
-//        public void selectMobileNetProviderForCustomize() {
-//                common.waitForElementClickableByCss(selectOptionOfMobile).click();
-//                common.waitForElementVisibleByCss(OptionFromDropDownOfMobileCustomize);
-//                common.waitForElementClickableByCss(OptionFromDropDownOfMobileCustomize).click();
-//        }
-
-        public void permissionSettingOfficerUserForViewOnly() {
+        public void setPermissions(String calendarName, String vehicleName, boolean enableCustomize) {
                 common.waitForElementClickableByCss(clickOnPremissionTab).click();
+                if (enableCustomize) {
+                        common.waitForElementClickableByCss(clickOnEnableButton).click();
+                }
                 common.waitForElementClickableByCss(crossDefaultMapSelection).click();
                 waitInSeconds(2);
+
                 common.waitForElementClickableByCss(clickOnSelectCalendarToOpenDropDown).click();
-                common.waitForElementVisibleByCss(selectOptionFromCalendarDropdownForViewOnly);
-                common.waitForElementClickableByCss(selectOptionFromCalendarDropdownForViewOnly).click();
-                waitInSeconds(2);
+                List<WebElement> calendarOptions = driver.findElements(By.cssSelector(selectOptions));
+                for (WebElement option : calendarOptions) {
+                        if (option.getText().trim().equalsIgnoreCase(calendarName.trim())) {
+                                waitInSeconds(1);
+                                option.click();
+                                break;
+                        }
+                }
+
                 clickOutsideDropdown();
+
                 common.waitForElementClickableByCss(clickOnMapVisibilityForVehiclesAllOption).click();
                 waitInSeconds(2);
                 common.waitForElementClickableByCss(clickOnMapVisibilityDropdown).click();
-                waitInSeconds(3);
-                common.waitForElementClickableByCss(clickOnDropDownListToSelectVehicle).click();
+                waitInSeconds(1);
+                List<WebElement> vehicleOptions = driver.findElements(By.cssSelector(selectOptions));
+                for (WebElement option : vehicleOptions) {
+                        if (option.getText().trim().equalsIgnoreCase(vehicleName.trim())) {
+                                waitInSeconds(1);
+                                safeClick(option);
+//                                option.click();
+                                break;
+                        }
+                }
                 clickOutsideDropdown();
-                waitInSeconds(3);
+                waitInSeconds(2);
         }
 
-        public void permissionSettingOfficerUserForEditView() {
-                common.waitForElementClickableByCss(clickOnPremissionTab).click();
-                common.waitForElementClickableByCss(crossDefaultMapSelection).click();
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(clickOnSelectCalendarToOpenDropDown).click();
-                common.waitForElementVisibleByCss(selectOptionFromCalendarDropdownForEditView);
-                common.waitForElementClickableByCss(selectOptionFromCalendarDropdownForEditView).click();
-                waitInSeconds(2);
-                clickOutsideDropdown();
-                common.waitForElementClickableByCss(clickOnMapVisibilityForVehiclesAllOption).click();
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(clickOnMapVisibilityDropdown).click();
-                waitInSeconds(3);
-                common.waitForElementClickableByCss(clickOnDropDownListToSelectVehicle).click();
-                clickOutsideDropdown();
-                waitInSeconds(3);
-        }
+        public void notificationOfOfficerUser(webData userData) {
 
-        public void permissionSettingOfficerUserForAdmin() {
-                common.waitForElementClickableByCss(clickOnPremissionTab).click();
-                common.waitForElementClickableByCss(crossDefaultMapSelection).click();
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(clickOnSelectCalendarToOpenDropDown).click();
-                common.waitForElementVisibleByCss(selectOptionFromCalendarDropdownForAdmin);
-                common.waitForElementClickableByCss(selectOptionFromCalendarDropdownForAdmin).click();
-                waitInSeconds(2);
-                clickOutsideDropdown();
-                common.waitForElementClickableByCss(clickOnMapVisibilityForVehiclesAllOption).click();
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(clickOnMapVisibilityDropdown).click();
-                waitInSeconds(3);
-                common.waitForElementClickableByCss(clickOnDropDownListToSelectVehicle).click();
-                clickOutsideDropdown();
-                waitInSeconds(3);
-        }
-        public void permissionSettingOfficerUserForCustomize() {
-                common.waitForElementClickableByCss(clickOnPremissionTab).click();
-                common.waitForElementClickableByCss(clickOnEnableButton).click();
-                common.waitForElementClickableByCss(crossDefaultMapSelection).click();
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(clickOnSelectCalendarToOpenDropDown).click();
-                common.waitForElementVisibleByCss(selectOptionFromCalendarDropdownForCustomize);
-                common.waitForElementClickableByCss(selectOptionFromCalendarDropdownForCustomize).click();
-                waitInSeconds(2);
-                clickOutsideDropdown();
-                common.waitForElementClickableByCss(clickOnMapVisibilityForVehiclesAllOption).click();
-                waitInSeconds(2);
-                common.waitForElementClickableByCss(clickOnMapVisibilityDropdown).click();
-                waitInSeconds(3);
-                common.waitForElementClickableByCss(clickOnDropDownListToSelectVehicle).click();
-                clickOutsideDropdown();
-                waitInSeconds(3);
-        }
-
-
-        public void notificationOfOfficerUser() {
                 common.waitForElementClickableByXpath(clickOnNotificationTab).click();
                 common.waitForElementClickableByCss(clickOnJobToViewNotificationOptions).click();
-                List<WebElement> SelectJobTogles = driver.findElements(By.cssSelector(jobTogleSelectors));
-                WebElement jobFirstElement = SelectJobTogles.get(0);
+                List<WebElement> selectJobTogles = driver.findElements(By.cssSelector(jobTogleSelectors));
+                WebElement jobFirstElement = selectJobTogles.get(0);
                 jobFirstElement.click();
-                WebElement jobSecondElement = SelectJobTogles.get(1);
+                WebElement jobSecondElement = selectJobTogles.get(1);
                 jobSecondElement.click();
-                WebElement jobThirdElement = SelectJobTogles.get(2);
+                WebElement jobThirdElement = selectJobTogles.get(2);
                 jobThirdElement.click();
-                WebElement jobForthElement = SelectJobTogles.get(3);
+                WebElement jobForthElement = selectJobTogles.get(3);
                 jobForthElement.click();
 
                 common.waitForElementClickableByCss(clickOnInvoiceToViewNotificationOption).click();
@@ -460,10 +339,9 @@ public class OfficerPage {
                 invoiceThirdElement.click();
                 WebElement invoiceForthElement = SelectInvoiceTogles.get(3);
                 invoiceForthElement.click();
-                List<WebElement> SelectInvoiceReminderDateInput = driver.findElements(By.cssSelector(invoiceReinderTogleSelector));
-                WebElement overdueInvoicesReminderDate = SelectInvoiceReminderDateInput.get(1);
-                overdueInvoicesReminderDate.clear();
-                overdueInvoicesReminderDate.sendKeys("1");
+                List<WebElement> invDates = driver.findElements(By.cssSelector(invoiceReinderTogleSelector));
+                invDates.get(1).clear();
+                invDates.get(1).sendKeys(userData.getInvoiceReminder());
 
                 common.waitForElementClickableByCss(clickOnEstimatesToViewNotificationOption).click();
                 List<WebElement> SelectEstimateTogles = driver.findElements(By.cssSelector(estimateTogleSelector));
@@ -510,23 +388,19 @@ public class OfficerPage {
                 contractsThirdElement.click();
                 WebElement contractsForthElement = SelectContractsTogles.get(3);
                 contractsForthElement.click();
-
-                List<WebElement> SelectContractsReminderDateInput = driver.findElements(By.cssSelector(contractReminderDays));
-                WebElement serviceContractExpirationReminderDate = SelectContractsReminderDateInput.get(1);
-                serviceContractExpirationReminderDate.clear();
-                serviceContractExpirationReminderDate.sendKeys("1");
-                WebElement upcomingServiceReminderDate = SelectContractsReminderDateInput.get(4);
-                upcomingServiceReminderDate.clear();
-                upcomingServiceReminderDate.sendKeys("1");
+                List<WebElement> contractDates = driver.findElements(By.cssSelector(contractReminderDays));
+                contractDates.get(1).clear();
+                contractDates.get(1).sendKeys(userData.getContractServiceReminder());
+                contractDates.get(4).clear();
+                contractDates.get(4).sendKeys(userData.getContractsUpcomingReminder());
 
                 common.waitForElementClickableByCss(clickOnEquipmentToViewNotificationOption).click();
                 List<WebElement> SelectEquipmentTogles = driver.findElements(By.cssSelector(equipmentTogleSelector));
                 WebElement equipmentsFirstElement = SelectEquipmentTogles.get(0);
                 equipmentsFirstElement.click();
-                List<WebElement> SelectEquipmentReminderDateInput = driver.findElements(By.cssSelector(equipmentReminderDays));
-                WebElement equipmentRegistrationReminderDate = SelectEquipmentReminderDateInput.get(1);
-                equipmentRegistrationReminderDate.clear();
-                equipmentRegistrationReminderDate.sendKeys("1");
+                List<WebElement> equipDates = driver.findElements(By.cssSelector(equipmentReminderDays));
+                equipDates.get(1).clear();
+                equipDates.get(1).sendKeys(userData.getEquipmentReminder());
 
                 common.waitForElementClickableByCss(clickOnInventoryToViewNotificationOption).click();
                 List<WebElement> SelectInventoryTogles = driver.findElements(By.cssSelector(inventoryTogleSelector));
@@ -553,90 +427,67 @@ public class OfficerPage {
                 vehiclesFifthElement.click();
                 WebElement vehiclesSixthElement = SelectVehiclesTogles.get(5);
                 vehiclesSixthElement.click();
-                List<WebElement> SelectVehiclesReminderDateInput = driver.findElements(By.cssSelector(vehicleReminderDays));
-                WebElement vehicleRegistrationReminderDate = SelectVehiclesReminderDateInput.get(1);
-                vehicleRegistrationReminderDate.clear();
-                vehicleRegistrationReminderDate.sendKeys("1");
-                WebElement licenseRenewalReminderDate = SelectVehiclesReminderDateInput.get(4);
-                licenseRenewalReminderDate.clear();
-                licenseRenewalReminderDate.sendKeys("3");
-                WebElement medicalCardRenwalReminderDate = SelectVehiclesReminderDateInput.get(7);
-                medicalCardRenwalReminderDate.clear();
-                medicalCardRenwalReminderDate.sendKeys("2");
+                List<WebElement> vehicleDates = driver.findElements(By.cssSelector(vehicleReminderDays));
+                vehicleDates.get(1).clear();
+                vehicleDates.get(1).sendKeys(userData.getVehicleRegistrationReminder());
+                vehicleDates.get(4).clear();
+                vehicleDates.get(4).sendKeys(userData.getVehicleLicense());
+                vehicleDates.get(7).clear();
+                vehicleDates.get(7).sendKeys(userData.getVehicleMedical());
         }
 
-        public void userPreferenceOfCustomizeOfficerUser() {
-                common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
-                common.waitForElementVisibleByCss(clickOnDropDownToSelectRedirectPage).click();
-                common.waitForElementVisibleByCss(selectOptionFromDropDownForUpdateRedirectPageAfterLogin);
-                common.waitForElementVisibleByCss(selectOptionFromDropDownForUpdateRedirectPageAfterLogin).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnEstimateDropDown).click();
-                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectUpdatedTemplate);
-                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectUpdatedTemplate).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnEstimateEmailTemplateDropdown).click();
-                common.waitForElementVisibleByCss(selectTheUpdatedEstimateEmailOptionFromTheDropdownList);
-                common.waitForElementVisibleByCss(selectTheUpdatedEstimateEmailOptionFromTheDropdownList).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnInvoiceEmailTemplateDropdown).click();
-                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceEmailOptionFromTheDropdownList);
-                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceEmailOptionFromTheDropdownList).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnInvoiceReminderEmailDropdown).click();
-                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceReminderOptionFromTheDropdownList);
-                common.waitForElementVisibleByCss(selectTheUpdatedInvoiceReminderOptionFromTheDropdownList).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnServiceAgreementDropdown).click();
-                common.waitForElementVisibleByCss(selectUpdateTheServiceAgreementOptionFromDropdown);
-                common.waitForElementVisibleByCss(selectUpdateTheServiceAgreementOptionFromDropdown).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnMembershipEmailDropdown).click();
-                common.waitForElementVisibleByCss(selectTheUpdatedMembershipEmailOptionFromDropdown);
-                common.waitForElementVisibleByCss(selectTheUpdatedMembershipEmailOptionFromDropdown).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnFormEmailDropdown).click();
-                common.waitForElementVisibleByCss(selectTheUpdatedFormEmailOptionFromDropdown);
-                common.waitForElementVisibleByCss(selectTheUpdatedFormEmailOptionFromDropdown).click();
-                common.waitForElementVisibleByCss(clickOnSaveButton).click();
-                waitInSeconds(5);
+        public void userPreferenceOfOfficerUser(webData userData) {
+        // open the User Preference tab
+        common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
+        // redirect‑page dropdown
+        common.waitForElementClickableByCss(clickOnDropDownToSelectRedirectPage).click();
+        chooseOptionByText(selectOption, userData.getRedirectLoginPage());
+
+        // estimate‑template dropdown
+        common.waitForElementClickableByCss(clickOnEstimateDropDown).click();
+        chooseOptionByText(selectOption, userData.getEstimateTemplate());
+
+        // estimate‑email template
+        common.waitForElementClickableByCss(clickOnEstimateEmailTemplateDropdown).click();
+        chooseOptionByText(selectOption, userData.getEstimateEmail());
+
+        // invoice‑email template
+        common.waitForElementClickableByCss(clickOnInvoiceEmailTemplateDropdown).click();
+        chooseOptionByText(selectOption, userData.getInvoiceEmail());
+
+        // invoice‑reminder template
+        common.waitForElementClickableByCss(clickOnInvoiceReminderEmailDropdown).click();
+        chooseOptionByText(selectOption, userData.getInvoiceReminder());
+
+        // service‑agreement template
+        common.waitForElementClickableByCss(clickOnServiceAgreementDropdown).click();
+        chooseOptionByText(selectOption, userData.getServiceAgreement());
+
+        // membership‑email template
+        common.waitForElementClickableByCss(clickOnMembershipEmailDropdown).click();
+        chooseOptionByText(selectOption, userData.getMembershipEmail());
+
+        // form‑email template
+        common.waitForElementClickableByCss(clickOnFormEmailDropdown).click();
+        chooseOptionByText(selectOption, userData.getFormEmail());
+
+        // save changes
+        common.waitForElementClickableByCss(clickOnSaveButton).click();
+        waitInSeconds(5);
         }
 
-        public void userPreferenceOfOfficerUser() {
-                common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
-                common.waitForElementClickableByCss(clickOnDropDownToSelectRedirectPage).click();
-                common.waitForElementVisibleByCss(selectOptionFromDropDownForRedirectPageAfterLogin);
-                common.waitForElementVisibleByCss(selectOptionFromDropDownForRedirectPageAfterLogin).click();
+        private void chooseOptionByText(String optionsCssSelector, String visibleText) {
+                List<WebElement> options = driver.findElements(By.cssSelector(optionsCssSelector));
+                for (WebElement dropdownOption : options) {
+                        if (dropdownOption.getText().trim().equalsIgnoreCase(visibleText.trim())) {
+                                dropdownOption.click();
+                                clickOutsideDropdown();
+                                return;
+                        }
+                }
+                // fallback: if nothing matches, click the first
+                options.get(0).click();
                 clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnEstimateDropDown).click();
-                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectTemplate);
-                common.waitForElementVisibleByCss(clickOnEstimatelistToSelectTemplate).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnEstimateEmailTemplateDropdown).click();
-                common.waitForElementVisibleByCss(selectTheEstimateEmailOptionFromTheDropdownList);
-                common.waitForElementVisibleByCss(selectTheEstimateEmailOptionFromTheDropdownList).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnInvoiceEmailTemplateDropdown).click();
-                common.waitForElementVisibleByCss(selectTheInvoiceEmailOptionFromTheDropdownList);
-                common.waitForElementVisibleByCss(selectTheInvoiceEmailOptionFromTheDropdownList).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnInvoiceReminderEmailDropdown).click();
-                common.waitForElementVisibleByCss(selectTheInvoiceReminderOptionFromTheDropdownList);
-                common.waitForElementVisibleByCss(selectTheInvoiceReminderOptionFromTheDropdownList).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnServiceAgreementDropdown).click();
-                common.waitForElementVisibleByCss(selectTheServiceAgreementOptionFromDropdown);
-                common.waitForElementVisibleByCss(selectTheServiceAgreementOptionFromDropdown).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnMembershipEmailDropdown).click();
-                common.waitForElementVisibleByCss(selectTheMembershipEmailOptionFromDropdown);
-                common.waitForElementVisibleByCss(selectTheMembershipEmailOptionFromDropdown).click();
-                clickOutsideDropdown();
-                common.waitForElementVisibleByCss(clickOnFormEmailDropdown).click();
-                common.waitForElementVisibleByCss(selectTheFormEmailOptionFromDropdown);
-                common.waitForElementVisibleByCss(selectTheFormEmailOptionFromDropdown).click();
-                common.waitForElementVisibleByCss(clickOnSaveButton).click();
-                waitInSeconds(5);
         }
 
         public void performAssertionToVerifyAdminInputDataOfOfficerUser(webData officerUserAdmin) {
@@ -661,14 +512,14 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedDropdownText(clickOnMapVisibilityDropdown), "Usman Flow", "Vehicle selection mismatch");
                 common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
                 waitInSeconds(2);
-                Assert.assertEquals(getSelectedDropdownText(clickOnDropDownToSelectRedirectPage), "Map", "Map selection mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnEstimateDropDown), "HVAC Maintenance Proposal Copy", "Estimate is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnEstimateEmailTemplateDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Estimate Email is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceEmailTemplateDropdown), "Invoice For Smoke Testing", "Invoice Email is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceReminderEmailDropdown), "Reminder: Invoice {{InvoiceNumber}} from {{Compan", "Invoice Reminder is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnDropDownToSelectRedirectPage), "Estimates", "Map selection mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnEstimateDropDown), "HVAC System Installation Proposal", "Estimate is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnEstimateEmailTemplateDropdown), "Company Default", "Estimate Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceEmailTemplateDropdown), "Company Default", "Invoice Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceReminderEmailDropdown), "Company Default", "Invoice Reminder is mismatch");
                 Assert.assertEquals(getSelectedDropdownText(clickOnServiceAgreementDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Service Agreeement Email is mismatch");
                 Assert.assertEquals(getSelectedDropdownText(clickOnMembershipEmailDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email Email is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnFormEmailDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnFormEmailDropdown), "Company Default", "Form Email is mismatch");
                 common.waitForElementVisibleByCss(clickOnSaveButton).click();
                 waitInSeconds(5);
         }
@@ -695,13 +546,13 @@ public class OfficerPage {
                 Assert.assertEquals(getSelectedDropdownText(clickOnMapVisibilityDropdown), "Usman Flow", "Vehicle selection mismatch");
                 common.waitForElementClickableByXpath(clickOnUserPreferenceTab).click();
                 waitInSeconds(2);
-                Assert.assertEquals(getSelectedDropdownText(clickOnDropDownToSelectRedirectPage), "Customer", "Customer selection mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnDropDownToSelectRedirectPage), "Schedule", "Customer selection mismatch");
                 Assert.assertEquals(getSelectedDropdownText(clickOnEstimateDropDown), "Planned Maintenance Agreement", "Estimate is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnEstimateEmailTemplateDropdown), "Company Default", "Estimate Email is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceEmailTemplateDropdown), "Invoice {{InvoiceNumber}} from {{CompanyName}}", "Invoice Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnEstimateEmailTemplateDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Estimate Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceEmailTemplateDropdown), "Invoice For Smoke Testing", "Invoice Email is mismatch");
                 Assert.assertEquals(getSelectedDropdownText(clickOnInvoiceReminderEmailDropdown), "Company Default", "Invoice Reminder is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnServiceAgreementDropdown), "Company Default", "Service Agreeement Email is mismatch");
-                Assert.assertEquals(getSelectedDropdownText(clickOnMembershipEmailDropdown), "Company Default", "Form Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnServiceAgreementDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Service Agreeement Email is mismatch");
+                Assert.assertEquals(getSelectedDropdownText(clickOnMembershipEmailDropdown), "Estimate {{EstimateNumber}} from {{CompanyName}}", "Form Email is mismatch");
                 Assert.assertEquals(getSelectedDropdownText(clickOnFormEmailDropdown), "Company Default", "Form Email is mismatch");
                 common.waitForElementVisibleByCss(clickOnSaveButton).click();
                 waitInSeconds(5);
@@ -710,7 +561,7 @@ public class OfficerPage {
         public void logoutFlow() {
                 WebElement profile = common.waitForElementVisibleByCss(profileIcon);
                 Assert.assertTrue(profile.isDisplayed(), "Login was not successful. Profile icon not found.");
-                clickProfileIcon();
+                common.findElementByCss(profileIcon).click();
                 clickLogout();
         }
 

@@ -10,6 +10,8 @@ public class DriverManager {
         public static WebDriver createWebDriver() {
                 if (driver == null) {
                         ChromeOptions options = new ChromeOptions();
+                        options.addArguments("--disable-gpu");
+                        options.addArguments("--no-sandbox");
                         options.addArguments("--start-maximized");
                         options.addArguments("--disable-notifications");
                         options.addArguments("--incognito");

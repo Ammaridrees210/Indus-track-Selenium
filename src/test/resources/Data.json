@@ -45,7 +45,27 @@
                         "city":"sargodha",
                         "state":"punjab",
                         "zip":"40100",
-                        "country":"pakistan"
+                        "country":"pakistan",
+                        "calendarName":"Delivery Schedule",
+                        "vehicleName": "testing1122",
+                        "invoiceReminder": "0",
+                        "contractServiceReminder": "1",
+                        "contractsUpcomingReminder": "2",
+                        "equipmentReminder":"2",
+                        "vehicleRegistrationReminder": "1",
+                        "vehicleLicense": "2",
+                        "vehicleMedical": "0",
+                        "redirectLoginPage": "Map",
+                        "estimateTemplate": "HVAC Maintenance Proposal Copy",
+                        "estimateEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "invoiceEmail": "Invoice {{InvoiceNumber}} from {{CompanyName}}",
+                        "invoiceReminderEmail": "Company Default",
+                        "serviceAgreement": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "membershipEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "formEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}"
+
+
+
                 }
         ],
         "officerUserEditView":[
@@ -62,7 +82,25 @@
                         "city":"Karachi",
                         "state":"sindh",
                         "zip":"40100",
-                        "country":"pakistan"
+                        "country":"pakistan",
+                        "calendarName":"Electrical",
+                        "vehicleName": "Ken's crew",
+                        "invoiceReminder": "2",
+                        "contractServiceReminder": "1",
+                        "contractsUpcomingReminder": "0",
+                        "equipmentReminder":"2",
+                        "vehicleRegistrationReminder": "2",
+                        "vehicleLicense": "2",
+                        "vehicleMedical": "2",
+                        "redirectLoginPage": "Customer",
+                        "estimateTemplate": "Planned Maintenance Agreement",
+                        "estimateEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "invoiceEmail": "Invoice For Smoke Testing",
+                        "invoiceReminderEmail": "Company Default",
+                        "serviceAgreement": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "membershipEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "formEmail": "Company Default"
+
                 }
         ],
         "officerUserAdmin":[
@@ -79,7 +117,25 @@
                         "city":"lahore,Pakistan",
                         "state":"punjab",
                         "zip":"40100",
-                        "country":"pakistan"
+                        "country":"pakistan",
+                        "calendarName":"HVAC",
+                        "vehicleName": "Usman Flow",
+                        "invoiceReminder": "2",
+                        "contractServiceReminder": "5",
+                        "contractsUpcomingReminder": "4",
+                        "equipmentReminder":"1",
+                        "vehicleRegistrationReminder": "2",
+                        "vehicleLicense": "2",
+                        "vehicleMedical": "2",
+                        "redirectLoginPage": "Estimates",
+                        "estimateTemplate": "HVAC System Installation Proposal",
+                        "estimateEmail": "Company Default",
+                        "invoiceEmail": "Company Default",
+                        "invoiceReminderEmail": "Company Default",
+                        "serviceAgreement": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "membershipEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "formEmail": "Company Default"
+
                 }
         ],
         "officerUserCustomize":[
@@ -96,7 +152,25 @@
                         "city":"Shogran",
                         "state":"KPK",
                         "zip":"40100",
-                        "country":"pakistan"
+                        "country":"pakistan",
+                        "calendarName":"Lawn Jobs",
+                        "vehicleName": "Usman Flow",
+                        "invoiceReminder": "2",
+                        "contractServiceReminder": "3",
+                        "contractsUpcomingReminder": "0",
+                        "equipmentReminder":"0",
+                        "vehicleRegistrationReminder": "2",
+                        "vehicleLicense": "3",
+                        "vehicleMedical": "2",
+                        "redirectLoginPage": "Schedule",
+                        "estimateTemplate": "Planned Maintenance Agreement",
+                        "estimateEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "invoiceEmail": "Invoice For Smoke Testing",
+                        "invoiceReminderEmail": "Company Default",
+                        "serviceAgreement": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "membershipEmail": "Estimate {{EstimateNumber}} from {{CompanyName}}",
+                        "formEmail": "Company Default"
+
                 }
         ]
 }
